@@ -1,10 +1,10 @@
 <template>
   <div class="topbar">
     <div class="topbar-left">
-        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#"><i class="fa-brands fa-twitter"></i></a>
-        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://www.facebook.com/CinemarkColombia"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://x.com/CinemarkCol?lang=es"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://www.instagram.com/cinemarkcol/#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@cinemarkcol"><i class="fa-brands fa-tiktok"></i></a>
     </div>
 
     <div class="topbar-center">

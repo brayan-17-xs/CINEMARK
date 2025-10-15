@@ -2,9 +2,9 @@
   <nav class="navbar">
     <div class="logo">CINEMARK</div>
     <ul class="nav-links">
-      <li><a href="#">CARTELERA</a></li>
-      <li><a href="#">TEATROS</a></li>
-      <li><a href="#">CONFITERÍA</a></li>
+      <li><a href="cartelera">CARTELERA</a></li>
+      <li><a href="teatros">TEATROS</a></li>
+      <li><a href="confiteria">CONFITERÍA</a></li>
       <li><a href="#">PROMOCIONES</a></li>
       <li><a href="#" class="active">CINE CLUB</a></li>
       <li><a href="#">TIQUETERA</a></li>

@@ -1,5 +1,9 @@
 <template>
-  <router-view/>
+  <RouterLink to="/"></RouterLink>
+  <RouterLink to="/cartelera"></RouterLink>
+  <RouterLink to="/teatros"></RouterLink>
+  <RouterLink to="/confiteria"></RouterLink>
+  <RouterView/>
 </template>
 
 <style>

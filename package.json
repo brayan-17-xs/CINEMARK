@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.0.1",
+    "@tailwindcss/vite": "^4.1.14",
     "core-js": "^3.8.3",
+    "tailwindcss": "^4.1.14",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3"
   },
