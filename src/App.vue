@@ -3,6 +3,8 @@
   <RouterLink to="/cartelera"></RouterLink>
   <RouterLink to="/teatros"></RouterLink>
   <RouterLink to="/confiteria"></RouterLink>
+  <RouterLink to="/promociones"></RouterLink>
+  <RouterLink to="/cineclub"></RouterLink>
   <RouterView/>
 </template>
 

@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import CarteleraView from '../views/CarteleraView.vue'
 import TeatroView from '../views/TeatroView.vue'
 import ConfiteriaView from '../views/ConfiteriaView.vue'
+import PromoView from '../views/PromoView.vue'
+import CineclubView from '../views/CineclubView.vue'
 
 const routes = [
   {
@@ -24,6 +26,16 @@ const routes = [
     path: '/confiteria',
     name: 'confiteria',
     component: ConfiteriaView
+  },
+  {
+    path: '/promociones',
+    name: 'promociones',
+    component: PromoView
+  },
+  {
+    path: '/cineclub',
+    name: 'cineclub',
+    component: CineclubView
   },
   {
     path: '/about',

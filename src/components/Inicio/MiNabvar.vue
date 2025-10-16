@@ -5,8 +5,8 @@
       <li><a href="cartelera">CARTELERA</a></li>
       <li><a href="teatros">TEATROS</a></li>
       <li><a href="confiteria">CONFITERÍA</a></li>
-      <li><a href="#">PROMOCIONES</a></li>
-      <li><a href="#" class="active">CINE CLUB</a></li>
+      <li><a href="promociones">PROMOCIONES</a></li>
+      <li><a href="cineclub" class="active">CINE CLUB</a></li>
       <li><a href="#">TIQUETERA</a></li>
       <li><a href="#">CONCURSOS</a></li>
     </ul>
