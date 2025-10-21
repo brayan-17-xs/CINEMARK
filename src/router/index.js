@@ -5,6 +5,7 @@ import TeatroView from '../views/TeatroView.vue'
 import ConfiteriaView from '../views/ConfiteriaView.vue'
 import PromoView from '../views/PromoView.vue'
 import CineclubView from '../views/CineclubView.vue'
+import RegistroView from '../views/RegistroView.vue'
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
     path: '/cineclub',
     name: 'cineclub',
     component: CineclubView
+  },
+  {
+    path: '/registro',
+    name: 'registro',
+    component: RegistroView
   },
   {
     path: '/about',
