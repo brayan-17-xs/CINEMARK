@@ -6,6 +6,8 @@ import ConfiteriaView from '../views/ConfiteriaView.vue'
 import PromoView from '../views/PromoView.vue'
 import CineclubView from '../views/CineclubView.vue'
 import RegistroView from '../views/RegistroView.vue'
+import TiqueteriaView from '../views/TiqueteriaView.vue'
+import ConcursosView from '../views/ConcursosView.vue'
 
 const routes = [
   {
@@ -42,6 +44,16 @@ const routes = [
     path: '/registro',
     name: 'registro',
     component: RegistroView
+  },
+  {
+    path: '/tiqueteria',
+    name: 'tiqueteria',
+    component: TiqueteriaView
+  },
+  {
+    path: '/concursos',
+    name: 'concursos',
+    component: ConcursosView
   },
   {
     path: '/about',

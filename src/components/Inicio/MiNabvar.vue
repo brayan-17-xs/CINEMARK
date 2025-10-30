@@ -7,8 +7,8 @@
       <li><a href="confiteria">CONFITERÍA</a></li>
       <li><a href="promociones">PROMOCIONES</a></li>
       <li><a href="cineclub" class="active">CINE CLUB</a></li>
-      <li><a href="#">TIQUETERA</a></li>
-      <li><a href="#">CONCURSOS</a></li>
+      <li><a href="tiqueteria">TIQUETERA</a></li>
+      <li><a href="concursos">CONCURSOS</a></li>
     </ul>
   </nav>
 </template>

@@ -23,7 +23,7 @@
         <ul>
           <li><a href="#">Términos y condiciones</a></li>
           <li><a href="#">Notificaciones judiciales</a></li>
-          <li><a href="#">www.sic.gov.co</a></li>
+          <li><a href="https://sedeelectronica.sic.gov.co/atencion-y-servicios-a-la-ciudadania">www.sic.gov.co</a></li>
         </ul>
       </div>
 

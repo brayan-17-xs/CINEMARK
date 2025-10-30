@@ -41,15 +41,24 @@ export default {
         return
       }
 
-      // Guardar en localStorage
-      localStorage.setItem('user', JSON.stringify({
-        email: this.email,
-        password: this.password
-      }))
+      // Verificar si existe un usuario guardado
+      const savedUser = JSON.parse(localStorage.getItem('user'))
 
-      // Emitir evento al componente padre
-      this.$emit('login-success', this.email)
-      this.$emit('close')
+      if (!savedUser) {
+        // Si no hay usuario, redirige al registro
+        alert('No existe una cuenta registrada con este correo. Por favor regístrate.')
+        this.$router.push('/registro') // Ajusta la ruta si tu registro está en otra URL
+        return
+      }
+
+      // Verificar que los datos coincidan
+      if (savedUser.email === this.email && savedUser.password === this.password) {
+        alert(`Bienvenido, ${savedUser.nombres || this.email}`)
+        this.$emit('login-success', this.email)
+        this.$emit('close')
+      } else {
+        alert('Correo o contraseña incorrectos')
+      }
     },
     closeModal() {
       this.$emit('close')
@@ -57,6 +66,7 @@ export default {
   }
 }
 </script>
+
 
 <style scoped>
 .modal-overlay {
