@@ -8,6 +8,7 @@ import CineclubView from '../views/CineclubView.vue'
 import RegistroView from '../views/RegistroView.vue'
 import TiqueteriaView from '../views/TiqueteriaView.vue'
 import ConcursosView from '../views/ConcursosView.vue'
+import ConocenosView from '../views/ConocenosView.vue'
 
 const routes = [
   {
@@ -54,6 +55,11 @@ const routes = [
     path: '/concursos',
     name: 'concursos',
     component: ConcursosView
+  },
+  {
+    path: '/conocenos',
+    name: 'conocenos',
+    component: ConocenosView
   },
   {
     path: '/about',

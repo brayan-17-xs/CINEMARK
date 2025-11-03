@@ -1,6 +1,8 @@
 <template>
   <nav class="navbar">
-    <div class="logo">CINEMARK</div>
+    <div class="logo">
+      <a href="/">CINEMARK</a>
+    </div>
     <ul class="nav-links">
       <li><a href="cartelera">CARTELERA</a></li>
       <li><a href="teatros">TEATROS</a></li>
@@ -15,7 +17,7 @@
 
 <script>
 export default {
-  name: 'MiNabvar',
+  name: 'MiNavbar',
 }
 </script>
 
@@ -27,12 +29,31 @@ export default {
   padding: 15px 0;
   background: #fff;
   border-bottom: 1px solid #ddd;
+
+  /* --- Fija debajo de la topbar --- */
+  position: fixed;
+  top: 35px; /* ajusta si tu topbar es más alta o más baja */
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
+
+/* Ajuste global: evita que el contenido quede oculto */
+:global(body) {
+  padding-top: 110px; /* topbar + navbar */
+}
+
 .logo {
   font-size: 22px;
   font-weight: bold;
-  color: #d40000;
   margin-right: 50px;
+}
+.logo a {
+  text-decoration: none;
+  color: #d40000;
+}
+.logo a:hover {
+  color: #a10000;
 }
 .nav-links {
   list-style: none;

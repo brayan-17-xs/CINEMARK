@@ -8,7 +8,7 @@
     </div>
 
     <div class="topbar-center">
-      <a href="#">CONÓCENOS</a>
+      <a href="conocenos">CONÓCENOS</a>
       <a href="#">FORMATOS</a>
       <a href="#">MARKETING EMPRESARIAL</a>
     </div>
@@ -80,8 +80,28 @@ export default {
   justify-content: space-between;
   align-items: center;
   background: rgb(236, 236, 236);
-  padding: 6px 30px;
+  padding: 6px 40px; /* 🔹 más espacio lateral */
   font-size: 12px;
+  width: 100%;
+
+  /* --- Fija arriba --- */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1100;
+  border-bottom: none;
+  box-sizing: border-box;
+}
+
+/* 🔹 Ajuste global para que el contenido no quede tapado */
+:global(body) {
+  padding-top: 105px; /* topbar + navbar */
+}
+
+/* --- Izquierda --- */
+.topbar-left {
+  display: flex;
+  align-items: center;
 }
 
 .topbar-left a {
@@ -91,6 +111,12 @@ export default {
   font-size: 16px;
 }
 
+/* --- Centro --- */
+.topbar-center {
+  flex: 1;
+  text-align: center;
+}
+
 .topbar-center a {
   margin: 0 10px;
   color: #000;
@@ -98,18 +124,32 @@ export default {
   font-weight: 500;
 }
 
+/* --- Derecha --- */
+.topbar-right {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0; /* evita que se achique */
+}
+
+.topbar-right span {
+  margin-right: 10px;
+  white-space: nowrap; /* evita salto de línea */
+}
+
 .topbar-right a,
 .topbar-right button {
   margin-left: 10px;
-  padding: 6px 12px;
+  padding: 6px 14px; /* 🔹 un poco más de padding */
   border: none;
   border-radius: 20px;
   font-size: 13px;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
+  white-space: nowrap; /* 🔹 evita que el texto se divida */
 }
 
+/* --- Botones --- */
 .btn-black {
   background: #333;
   color: #fff;

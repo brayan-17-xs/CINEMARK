@@ -7,6 +7,7 @@
   <RouterLink to="/cineclub"></RouterLink>
   <RouterLink to="/tiqueteria"></RouterLink>
   <RouterLink to="/concursos"></RouterLink>
+  <RouterLink to="/conocenos"></RouterLink>
   <RouterView/>
 </template>
 
