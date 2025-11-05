@@ -9,8 +9,7 @@
 
     <div class="topbar-center">
       <a href="conocenos">CONÓCENOS</a>
-      <a href="#">FORMATOS</a>
-      <a href="#">MARKETING EMPRESARIAL</a>
+      <a href="formatos">FORMATOS</a>
     </div>
 
     <div class="topbar-right">
@@ -22,7 +21,12 @@
 
       <!-- Si YA inició sesión -->
       <template v-else>
-        <span>Bienvenido, {{ userEmail }}</span>
+        <div class="usuario">
+          <span class="crown" :class="membresiaColor">
+            <i class="fa-solid fa-crown"></i>
+          </span>
+          <span class="email">{{ userEmail }}</span>
+        </div>
         <button class="btn-black" @click="logout">CERRAR SESIÓN</button>
       </template>
 
@@ -37,7 +41,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import LoginModal from '@/components/login/LoginModal.vue'
 
 export default {
@@ -46,27 +50,65 @@ export default {
   setup() {
     const showModal = ref(false)
     const userEmail = ref('')
+    const membresia = ref('') // Gold, Pro o vacío
 
     function handleLoginSuccess(email) {
       userEmail.value = email
+      const userData = { email }
+      localStorage.setItem('user', JSON.stringify(userData))
     }
 
     function logout() {
       localStorage.removeItem('user')
+      localStorage.removeItem('membresia')
       userEmail.value = ''
+      membresia.value = ''
     }
 
     onMounted(() => {
+      // ✅ Cargar usuario guardado
       const storedUser = localStorage.getItem('user')
       if (storedUser) {
         const { email } = JSON.parse(storedUser)
         userEmail.value = email
+      }
+
+      // ✅ Cargar membresía si ya existe
+      const storedMembresia = localStorage.getItem('membresia')
+      if (storedMembresia) {
+        membresia.value = storedMembresia
+      }
+
+      // 👂 Escuchar evento global cuando se compra una membresía
+      window.addEventListener('membresia-cambiada', (e) => {
+  membresia.value = e.detail.tipo
+  localStorage.setItem('membresia', e.detail.tipo) // ✅ guarda el cambio
+})
+
+    })
+
+    // ✅ Limpiar el listener al desmontar el componente
+    onUnmounted(() => {
+      window.removeEventListener('membresia-cambiada', () => {})
+    })
+
+    // 🎨 Color de la corona según membresía
+    const membresiaColor = computed(() => {
+      switch (membresia.value) {
+        case 'Gold':
+          return 'gold'
+        case 'Pro':
+          return 'pro'
+        default:
+          return 'none'
       }
     })
 
     return {
       showModal,
       userEmail,
+      membresia,
+      membresiaColor,
       handleLoginSuccess,
       logout
     }
@@ -74,17 +116,16 @@ export default {
 }
 </script>
 
+
 <style scoped>
 .topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: rgb(236, 236, 236);
-  padding: 6px 40px; /* 🔹 más espacio lateral */
+  padding: 6px 40px;
   font-size: 12px;
   width: 100%;
-
-  /* --- Fija arriba --- */
   position: fixed;
   top: 0;
   left: 0;
@@ -93,9 +134,8 @@ export default {
   box-sizing: border-box;
 }
 
-/* 🔹 Ajuste global para que el contenido no quede tapado */
 :global(body) {
-  padding-top: 105px; /* topbar + navbar */
+  padding-top: 105px;
 }
 
 /* --- Izquierda --- */
@@ -128,25 +168,43 @@ export default {
 .topbar-right {
   display: flex;
   align-items: center;
-  flex-shrink: 0; /* evita que se achique */
+  flex-shrink: 0;
 }
 
-.topbar-right span {
+.usuario {
+  display: flex;
+  align-items: center;
   margin-right: 10px;
-  white-space: nowrap; /* evita salto de línea */
+  gap: 6px;
+}
+
+.crown i {
+  font-size: 16px;
+}
+
+.crown.gold i {
+  color: #d4af37; /* Dorado */
+}
+
+.crown.pro i {
+  color: #b00000; /* Rojo */
+}
+
+.crown.none i {
+  color: #444; /* Negro por defecto */
 }
 
 .topbar-right a,
 .topbar-right button {
   margin-left: 10px;
-  padding: 6px 14px; /* 🔹 un poco más de padding */
+  padding: 6px 14px;
   border: none;
   border-radius: 20px;
   font-size: 13px;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
-  white-space: nowrap; /* 🔹 evita que el texto se divida */
+  white-space: nowrap;
 }
 
 /* --- Botones --- */

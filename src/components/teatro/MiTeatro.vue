@@ -26,7 +26,7 @@
           <div class="teatro-info">
             <h3>{{ teatro.nombre }}</h3>
             <p>{{ teatro.direccion }}</p>
-            <button>Más información</button>
+            <router-link to="/cartelera" class="btn-info">Más información</router-link>
           </div>
         </div>
       </div>
@@ -209,4 +209,22 @@ export default {
 .teatro-info button:hover {
   background: #8a0000;
 }
+.btn-info {
+  display: inline-block;
+  background: #b80000;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.btn-info:hover {
+  background: #8a0000;
+}
+
 </style>

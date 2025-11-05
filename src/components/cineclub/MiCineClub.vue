@@ -1,60 +1,52 @@
 <template>
   <div class="container-membresias">
-
     <!-- TÍTULO GENERAL -->
     <header class="header-membresias">
       <h1>CINE CLUB CINEMARK</h1>
-      <p class="subtitulo">Elige el plan que mejor se adapte a ti y disfruta beneficios exclusivos</p>
+      <p class="subtitulo">
+        Elige el plan que mejor se adapte a ti y disfruta beneficios exclusivos
+      </p>
     </header>
 
-    <!-- TARJETAS -->
+    <!-- TARJETAS GENERADAS -->
     <div class="membresias">
-      <!-- GOLD -->
-      <div class="tarjeta gold">
+      <div
+        v-for="membresia in membresias"
+        :key="membresia.id"
+        class="tarjeta"
+        :class="membresia.tipo.toLowerCase()"
+      >
         <div class="encabezado">
-          <h2>CINE CLUB <span>Gold</span></h2>
-          <p class="descripcion">Ahorra en cada visita al cine</p>
-          <p class="precio">$25.900 <span>/ por año</span></p>
+          <h2>
+            CINE CLUB <span>{{ membresia.tipo }}</span>
+          </h2>
+          <p class="descripcion">{{ membresia.descripcion || "Disfruta beneficios exclusivos" }}</p>
+          <p class="precio">
+            ${{ membresia.precio.toLocaleString() }} 
+            <span v-if="membresia.tipo === 'Gold'">/ por año</span>
+            <span v-else>/ pago mensual</span>
+          </p>
+          <p v-if="membresia.tipo === 'Pro'" class="nota">
+            a partir del segundo mes $28.900
+          </p>
         </div>
 
         <div class="beneficios">
           <ul>
-            <li><strong>Hasta 30% off</strong> en boletas según día de la semana</li>
-            <li><strong>Hasta 20% off</strong> en combos de confitería seleccionados</li>
-            <li><strong>Hasta 10% off</strong> en Menú Premier</li>
-            <li><strong>Regalo combo cumpleaños</strong> válido con la compra de mínimo 1 boleta</li>
+            <li v-for="(beneficio, index) in membresia.beneficios" :key="index">
+              <strong>{{ beneficio.split(" ")[0] }}</strong>
+              {{ beneficio.substring(beneficio.indexOf(" ")) }}
+            </li>
           </ul>
         </div>
 
         <div class="boton">
-          <button class="btn-gold">VER MEMBRESÍA</button>
-        </div>
-      </div>
-
-      <!-- PRO -->
-      <div class="tarjeta pro">
-        <div class="encabezado">
-          <h2>CINE CLUB <span>Pro</span></h2>
-          <p class="descripcion">Si vas a cine todos los meses, este plan es para ti</p>
-          <p class="precio">$25.900 <span>/ pago mensual</span></p>
-          <p class="nota">a partir del segundo mes $28.900</p>
-        </div>
-
-        <div class="beneficios">
-          <ul>
-            <li><strong>2 boletas de regalo por mes</strong></li>
-            <li><strong>Hasta 50% off</strong> en máximo 4 boletas por día</li>
-            <li><strong>Hasta 30% off</strong> en combos seleccionados</li>
-            <li><strong>Hasta 15% off</strong> en Menú Premier</li>
-            <li><strong>Regalo combo cumpleaños</strong> (crispetas + gaseosas)</li>
-            <li><strong>Regalo de bienvenida</strong> (crispetas 160 g al suscribirse)</li>
-            <li><strong>Participación en premieres</strong></li>
-            <li><strong>Concursos exclusivos</strong></li>
-          </ul>
-        </div>
-
-        <div class="boton">
-          <button class="btn-pro">VER MEMBRESÍA</button>
+          <button
+            :class="membresia.tipo === 'Gold' ? 'btn-gold' : 'btn-pro'"
+            @click="irACompra(membresia)"
+          >
+            VER MEMBRESÍA
+          </button>
         </div>
       </div>
     </div>
@@ -62,10 +54,34 @@
 </template>
 
 <script>
+import { membresias } from "@/api/MenbresiaService";
+
 export default {
-  name: 'MiCineClub',
+  name: "MiCineClub",
+  data() {
+    return {
+      membresias,
+    };
+  },
+  methods: {
+    irACompra(membresia) {
+  console.log('Click detectado en:', membresia);
+
+  const productoSeleccionado = {
+    tipo: 'Membresías',
+    nombre: membresia.tipo,
+    valor: membresia.precio
+  };
+
+  localStorage.setItem('productoSeleccionado', JSON.stringify(productoSeleccionado));
+
+  this.$router.push({ path: '/compra' }).catch(() => {});
 }
+
+  },
+};
 </script>
+
 
 <style scoped>
 .container-membresias {

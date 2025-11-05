@@ -8,6 +8,11 @@
   <RouterLink to="/tiqueteria"></RouterLink>
   <RouterLink to="/concursos"></RouterLink>
   <RouterLink to="/conocenos"></RouterLink>
+  <RouterLink to="/contacto"></RouterLink>
+  <RouterLink to="/legal"></RouterLink>
+  <RouterLink to="/formatos"></RouterLink>
+  <RouterLink to="/pelicula/:id"></RouterLink>
+  <RouterLink to="/compra"></RouterLink>
   <RouterView/>
 </template>
 

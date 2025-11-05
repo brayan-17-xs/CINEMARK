@@ -6,87 +6,116 @@
         Disfruta tus películas favoritas con los mejores combos y productos de nuestra confitería.
       </p>
 
-      <div class="productos-grid">
-        <div v-for="producto in productos" :key="producto.id" class="producto-card">
-          <img :src="producto.imagen" :alt="producto.nombre" class="producto-imagen" />
-          <div class="producto-info">
-            <h3 class="producto-nombre">{{ producto.nombre }}</h3>
-            <p class="producto-descripcion">{{ producto.descripcion }}</p>
-            <div class="producto-pie">
-              <span class="producto-precio">${{ producto.precio }}</span>
-              <button class="btn-comprar">Agregar</button>
+      <!-- Agrupar por tipo -->
+      <div v-for="(productos, tipo) in productosAgrupados" :key="tipo" class="grupo-tipo">
+        <h3 class="titulo-tipo">{{ tipo }}</h3>
+
+        <div class="productos-grid">
+          <div v-for="producto in productos" :key="producto.id" class="producto-card">
+            <img :src="producto.imagen" :alt="producto.nombre" class="producto-imagen" />
+            <div class="producto-info">
+              <h3 class="producto-nombre">{{ producto.nombre }}</h3>
+              <p class="producto-descripcion">{{ producto.promocion }}</p>
+              <div class="producto-pie">
+                <span class="producto-precio">${{ producto.valor.toLocaleString() }}</span>
+
+                <div class="contador">
+                  <button @click="disminuirCantidad(producto)" class="btn-cantidad">−</button>
+                  <span>{{ producto.cantidad || 0 }}</span>
+                  <button @click="aumentarCantidad(producto)" class="btn-cantidad">+</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- Carrito inferior -->
+      <div class="carrito-fijo" v-if="total > 0">
+        <div class="carrito-info">
+          <i class="fa fa-shopping-cart"></i>
+          <span class="carrito-texto">{{ totalProductos }} productos</span>
+          <span class="carrito-total">${{ total.toLocaleString() }}</span>
+        </div>
+        <button class="btn-continuar" @click="continuarCompra">CONTINUAR</button>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import comboPareja from "@/assets/combopareja.jpeg";
-import comboFamiliar from "@/assets/combofamiliar.jpeg";
-import palomitas from "@/assets/palomitas.jpeg";
-import doritos from "@/assets/doritos.jpeg";
-import gaseosa from "@/assets/gaseosa.jpeg";
-import comboInfantil from "@/assets/comboinfantil.jpeg";
+import { confiteria } from "@/api/ConfiteriaService";
 
 export default {
   name: "ConfiteriaSection",
   data() {
     return {
-      productos: [
-        {
-          id: 1,
-          nombre: "Combo Pareja",
-          descripcion: "2 gaseosas medianas + palomitas grandes para compartir",
-          precio: "38.000",
-          imagen: comboPareja,
-        },
-        {
-          id: 2,
-          nombre: "Combo Familiar",
-          descripcion: "Palomitas XL + 3 gaseosas + nachos con queso",
-          precio: "59.000",
-          imagen: comboFamiliar,
-        },
-        {
-          id: 3,
-          nombre: "Palomitas Grandes",
-          descripcion: "Clásicas, mantequilla o dulces. Crujientes y deliciosas.",
-          precio: "25.000",
-          imagen: palomitas,
-        },
-        {
-          id: 4,
-          nombre: "Doritos",
-          descripcion: "Nachos dorados acompañados con salsa de queso caliente.",
-          precio: "18.000",
-          imagen: doritos,
-        },
-        {
-          id: 5,
-          nombre: "Gaseosa Grande",
-          descripcion: "Tu bebida favorita, bien fría, tamaño 22 oz.",
-          precio: "12.000",
-          imagen: gaseosa,
-        },
-        {
-          id: 6,
-          nombre: "Combo Infantil",
-          descripcion: "Palomitas pequeñas + jugo + sorpresa para niños.",
-          precio: "22.000",
-          imagen: comboInfantil,
-        },
-      ],
+      productos: confiteria.map((p) => ({ ...p, cantidad: 0 })),
     };
+  },
+  computed: {
+    productosAgrupados() {
+      // Agrupa por tipo (Combos, Crispetas, Bebidas, Snacks)
+      return this.productos.reduce((acc, producto) => {
+        if (!acc[producto.tipo]) acc[producto.tipo] = [];
+        acc[producto.tipo].push(producto);
+        return acc;
+      }, {});
+    },
+    total() {
+      return this.productos.reduce(
+        (acc, producto) => acc + producto.valor * producto.cantidad,
+        0
+      );
+    },
+    totalProductos() {
+      return this.productos.reduce(
+        (acc, producto) => acc + producto.cantidad,
+        0
+      );
+    },
+  },
+  methods: {
+    aumentarCantidad(producto) {
+      producto.cantidad++;
+    },
+    disminuirCantidad(producto) {
+      if (producto.cantidad > 0) producto.cantidad--;
+    },
+    continuarCompra() {
+      const seleccionados = this.productos.filter((p) => p.cantidad > 0);
+
+      if (seleccionados.length === 0) {
+        alert("Debes agregar al menos un producto al carrito 🍿");
+        return;
+      }
+
+      // Prepara la información para localStorage
+      const productoSeleccionado = {
+        tipo: "Confitería",
+        productos: seleccionados.map((p) => ({
+          nombre: p.nombre,
+          cantidad: p.cantidad,
+          valorUnitario: p.valor,
+          subtotal: p.valor * p.cantidad,
+        })),
+        total: this.total,
+      };
+
+      // Guarda en localStorage
+      localStorage.setItem("productoSeleccionado", JSON.stringify(productoSeleccionado));
+
+      // Redirige a /compra
+      console.log("🛒 Producto guardado:", productoSeleccionado);
+      this.$router.push({ path: "/compra" }).catch(() => {});
+    },
   },
 };
 </script>
 
 <style scoped>
 .confiteria {
-  padding: 60px 20px;
+  padding: 60px 20px 120px;
   background-color: #fff;
 }
 
@@ -110,9 +139,18 @@ export default {
   margin-bottom: 40px;
 }
 
+.titulo-tipo {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  border-bottom: 2px solid #b80000;
+  display: inline-block;
+  margin: 30px 0 20px;
+}
+
 .productos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 24px;
 }
 
@@ -131,7 +169,7 @@ export default {
 
 .producto-imagen {
   width: 100%;
-  height: 200px;
+  height: 180px;
   object-fit: cover;
 }
 
@@ -140,16 +178,17 @@ export default {
 }
 
 .producto-nombre {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: #222;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .producto-descripcion {
-  font-size: 14px;
+  font-size: 13px;
   color: #666;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
+  height: 36px;
 }
 
 .producto-pie {
@@ -159,23 +198,79 @@ export default {
 }
 
 .producto-precio {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   color: #b80000;
 }
 
-.btn-comprar {
+.contador {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f5f5f5;
+  border-radius: 20px;
+  padding: 2px 8px;
+}
+
+.btn-cantidad {
   background: #b80000;
-  color: #fff;
+  color: white;
   border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  line-height: 1;
   cursor: pointer;
-  font-size: 14px;
+}
+
+.btn-cantidad:hover {
+  background: #8a0000;
+}
+
+.carrito-fijo {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 2px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.carrito-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.carrito-texto {
+  color: #555;
+}
+
+.carrito-total {
+  font-weight: 700;
+  color: #b80000;
+  font-size: 18px;
+}
+
+.btn-continuar {
+  background: #b80000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
   transition: background 0.2s ease;
 }
 
-.btn-comprar:hover {
+.btn-continuar:hover {
   background: #8a0000;
 }
 </style>

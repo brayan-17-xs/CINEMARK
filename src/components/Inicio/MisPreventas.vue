@@ -4,31 +4,45 @@
 
     <!-- Flechas -->
     <button class="arrow left" @click="prevMovie">&#10094;</button>
+
     <div class="preventa-slider">
       <div
         v-for="(movie, index) in visibleMovies"
-        :key="index"
+        :key="movie.id || index"
         class="movie-card"
       >
         <!-- Badge preventa -->
         <div class="badge-preventa">PREVENTA</div>
 
         <div class="poster">
-          <img :src="require(`@/assets/${movie.image}`)" :alt="movie.title" />
-          <!-- Overlay al hacer hover -->
+          <img :src="movie.imagen" :alt="movie.titulo" />
+
+          <!-- Overlay -->
           <div class="overlay">
             <div class="circle">
               <span>+</span>
             </div>
-            <p>{{ movie.format }}</p>
-            <p>{{ movie.duration }}</p>
+            <p>
+              {{
+                [
+                  movie.formatos.es2D ? "2D" : "",
+                  movie.formatos.es3D ? "3D" : "",
+                  movie.formatos.dbox ? "D-BOX" : "",
+                ]
+                  .filter(Boolean)
+                  .join(" / ")
+              }}
+            </p>
+            <p>{{ movie.clasificacion }}</p>
           </div>
         </div>
+
         <div class="movie-footer">
           <p>VER HORARIOS</p>
         </div>
       </div>
     </div>
+
     <button class="arrow right" @click="nextMovie">&#10095;</button>
 
     <!-- Botón inferior -->
@@ -39,59 +53,29 @@
 </template>
 
 <script>
+import { peliculas } from "@/api/PeliculasService";
+
 export default {
   name: "MisPreventas",
   data() {
     return {
       currentIndex: 0,
-      movies: [
-        {
-          title: "David Gilmour",
-          image: "david.jpeg",
-          format: "2D / Premier",
-          duration: "110 min | +12",
-        },
-        {
-          title: "Antes del Amanecer",
-          image: "amanecer.jpeg",
-          format: "2D / General",
-          duration: "120 min | Todos",
-        },
-        {
-          title: "Antes del Atardecer",
-          image: "atardecer.jpeg",
-          format: "2D / Premier",
-          duration: "115 min | +7",
-        },
-        {
-          title: "Epilogue (Remastered)",
-          image: "epilogue.jpeg",
-          format: "2D / General",
-          duration: "100 min | +12",
-        },
-        {
-          title: "Diario de una Pasión",
-          image: "pasion.jpeg",
-          format: "2D / General",
-          duration: "125 min | +15",
-        },
-        {
-          title: "La Novicia Rebelde",
-          image: "novicia.jpeg",
-          format: "2D / General",
-          duration: "140 min | Todos",
-        },
-      ],
+      movies: [],
     };
   },
   computed: {
     visibleMovies() {
-      return this.movies.slice(this.currentIndex, this.currentIndex + 5);
+      const visibles = this.movies.slice(0, 7);
+      return visibles.slice(this.currentIndex, this.currentIndex + 5);
     },
   },
   methods: {
+    async cargarPeliculas() {
+      // 🔥 Filtra solo las que estén en preventa
+      this.movies = peliculas.filter((p) => p.estado === "preventa");
+    },
     nextMovie() {
-      if (this.currentIndex < this.movies.length - 5) {
+      if (this.currentIndex < Math.max(this.movies.length - 5, 0)) {
         this.currentIndex++;
       }
     },
@@ -100,6 +84,9 @@ export default {
         this.currentIndex--;
       }
     },
+  },
+  mounted() {
+    this.cargarPeliculas();
   },
 };
 </script>
@@ -143,6 +130,8 @@ export default {
 
 .poster img {
   width: 100%;
+  height: 270px;
+  object-fit: cover;
   display: block;
 }
 
@@ -160,7 +149,7 @@ export default {
   z-index: 2;
 }
 
-/* Overlay en hover */
+/* Overlay */
 .overlay {
   position: absolute;
   top: 0;
@@ -194,7 +183,7 @@ export default {
   font-weight: bold;
 }
 
-/* Footer rojo con botón */
+/* Footer */
 .movie-footer {
   background: #d40000;
   color: #fff;
@@ -227,7 +216,7 @@ export default {
   right: 5px;
 }
 
-/* Botón de abajo */
+/* Botón inferior */
 .btn-ver-todas {
   margin-top: 25px;
 }

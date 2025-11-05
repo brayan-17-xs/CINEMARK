@@ -9,6 +9,11 @@ import RegistroView from '../views/RegistroView.vue'
 import TiqueteriaView from '../views/TiqueteriaView.vue'
 import ConcursosView from '../views/ConcursosView.vue'
 import ConocenosView from '../views/ConocenosView.vue'
+import ContactoView from '../views/ContactoView.vue'
+import LegalView from '../views/LegalView.vue'
+import FormatosView from '../views/FormatosView.vue'
+import InfoView from '@/views/InfoView.vue'
+import CompraView from '@/views/CompraView.vue'
 
 const routes = [
   {
@@ -60,6 +65,31 @@ const routes = [
     path: '/conocenos',
     name: 'conocenos',
     component: ConocenosView
+  },
+  {
+    path: '/contacto',
+    name: 'contacto',
+    component: ContactoView
+  },
+  {
+    path: '/legal',
+    name: 'legal',
+    component: LegalView
+  },
+  {
+    path: '/formatos',
+    name: 'formatos',
+    component: FormatosView
+  },
+  {
+    path: "/pelicula/:id",
+    name: "PeliculaDetalle",
+    component: InfoView,
+  },
+  {
+    path: "/compra",
+    name: "compra",
+    component: CompraView,
   },
   {
     path: '/about',

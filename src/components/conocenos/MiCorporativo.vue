@@ -7,37 +7,44 @@
       </div>
 
       <div class="corporativo-items">
-        <div
+        <router-link
           v-for="(item, index) in items"
           :key="index"
-          :class="['corporativo-item', { activo: activo === index }]"
-          @click="activo = index"
+          :to="item.link"
+          class="corporativo-item"
+          :class="{ activo: activo === index }"
         >
           <i :class="item.icon"></i>
           <span>{{ item.texto }}</span>
           <div class="barra" v-if="activo === index"></div>
-        </div>
+        </router-link>
       </div>
     </div>
   </section>
 </template>
 
-<script>
-import { ref } from 'vue'
+<script setup>
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
-export default {
-  name: 'MiCorporativo',
-  setup() {
-    const activo = ref(0)
-    const items = [
-      { icon: 'fa-regular fa-user', texto: 'QUIÉNES SOMOS' },
-      { icon: 'fa-regular fa-envelope', texto: 'CONTACTO' },
-      { icon: 'fa-regular fa-file-lines', texto: 'CINEMARK LEGAL' }
-    ]
+const route = useRoute()
+const activo = ref(0)
 
-    return { items, activo }
-  }
-}
+const items = [
+  { icon: 'fa-regular fa-user', texto: 'QUIÉNES SOMOS', link: '/conocenos' },
+  { icon: 'fa-regular fa-envelope', texto: 'CONTACTO', link: '/contacto' },
+  { icon: 'fa-regular fa-file-lines', texto: 'CINEMARK LEGAL', link: '/legal' }
+]
+
+// Detecta el cambio de ruta y actualiza el activo
+watch(
+  () => route.path,
+  (nuevaRuta) => {
+    const index = items.findIndex(item => item.link === nuevaRuta)
+    activo.value = index !== -1 ? index : 0
+  },
+  { immediate: true } // para marcar bien al cargar
+)
 </script>
 
 <style scoped>
@@ -88,6 +95,7 @@ export default {
   font-weight: 500;
   cursor: pointer;
   transition: color 0.3s ease;
+  text-decoration: none;
 }
 .corporativo-item i {
   display: block;

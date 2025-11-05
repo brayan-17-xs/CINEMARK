@@ -20,7 +20,7 @@
           <strong>5 boletos por solo $30.000!</strong>
         </p>
 
-        <button class="btn-pago">PROCEDER AL PAGO</button>
+        <button class="btn-pago" @click="procederAlPago">PROCEDER AL PAGO</button>
       </div>
     </div>
 
@@ -48,6 +48,28 @@
 <script>
 export default {
   name: "MiTiqueteria",
+  methods: {
+    procederAlPago() {
+      console.log("🟢 Botón de pago presionado");
+
+      const productoSeleccionado = {
+        tipo: "Tiquetera",
+        nombre: "Tiquetera Festival Temporada Siniestra",
+        valor: 30000,
+      };
+
+      try {
+        localStorage.setItem("productoSeleccionado", JSON.stringify(productoSeleccionado));
+        console.log("✅ Producto guardado:", productoSeleccionado);
+
+        // Redirección al formulario de compra
+        this.$router.push({ path: "/compra" }).catch(() => {});
+        console.log("➡️ Redirigiendo a /compra...");
+      } catch (error) {
+        console.error("❌ Error al proceder al pago:", error);
+      }
+    },
+  },
 };
 </script>
 

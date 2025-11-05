@@ -22,8 +22,12 @@
 
       <!-- BOTONES -->
       <div class="botones">
-        <button class="btn-gold">SUSCRIBIRME A CINE CLUB GOLD</button>
-        <button class="btn-pro">SUSCRIBIRME A CINE CLUB PRO</button>
+        <button class="btn-gold" @click="irACompra('Gold')">
+          SUSCRIBIRME A CINE CLUB GOLD
+        </button>
+        <button class="btn-pro" @click="irACompra('Pro')">
+          SUSCRIBIRME A CINE CLUB PRO
+        </button>
       </div>
     </section>
 
@@ -35,14 +39,38 @@
 <script>
 import fondoSuperior from '@/assets/fondosuperior.jpg'
 import fondoInferior from '@/assets/gold-club.png'
+import { membresias } from '@/api/MenbresiaService' // ✅ corregido
 
 export default {
   name: 'MiParati',
   data() {
-    return { fondoSuperior, fondoInferior }
-  }
+    return {
+      fondoSuperior,
+      fondoInferior,
+      membresias, // ✅ corregido
+    };
+  },
+  methods: {
+    irACompra(membresia) {
+  console.log('Click detectado en:', membresia);
+  console.log('Router:', this.$router);
+
+  const productoSeleccionado = {
+    tipo: 'Membresías',
+    nombre: membresia.tipo,
+    valor: membresia.precio
+  };
+
+  localStorage.setItem('productoSeleccionado', JSON.stringify(productoSeleccionado));
+  this.$router.push({ path: '/compra' }).catch(() => {});
 }
+
+  },
+};
 </script>
+
+<!-- (El estilo que tienes está bien, no requiere cambios) -->
+
 
 <style scoped>
 .container-programa {

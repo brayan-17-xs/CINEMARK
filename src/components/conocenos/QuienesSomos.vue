@@ -27,7 +27,7 @@
 
       <!-- Imagen panorámica -->
       <div class="imagen-principal">
-        <img src="/src/assets/quinessomos.png" alt="Cinemark panorámica" />
+        <img src="@/assets/quienes-somos-cmk-min.png" alt="Cinemark panorámica" />
       </div>
 
       <h3>FORMATOS Y EXPERIENCIAS</h3>

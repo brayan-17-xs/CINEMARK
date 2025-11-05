@@ -1,6 +1,5 @@
 <template>
   <div class="container-general">
-
     <!-- MENÚ SUPERIOR DE DÍAS -->
     <header class="menu-dias">
       <div
@@ -16,10 +15,13 @@
 
     <!-- CONTENIDO PRINCIPAL -->
     <div class="contenido-principal">
-      
       <!-- SECCIÓN BUENAVISTA -->
       <aside class="buenavista">
-        <img src="@/assets/buenavista.png" alt="Cinemark Buenavista" class="imagen-buenavista" />
+        <img
+          src="@/assets/buenavista.png"
+          alt="Cinemark Buenavista"
+          class="imagen-buenavista"
+        />
         <div class="info-buenavista">
           <p class="titulo">Cinemark Buenavista</p>
 
@@ -38,8 +40,8 @@
       <!-- CARTELERA -->
       <main class="cartelera">
         <div
-          v-for="pelicula in peliculas"
-          :key="pelicula.titulo"
+          v-for="pelicula in peliculasEstreno"
+          :key="pelicula.id"
           class="pelicula"
         >
           <img :src="pelicula.imagen" :alt="pelicula.titulo" class="poster" />
@@ -48,22 +50,34 @@
             <h2>{{ pelicula.titulo }}</h2>
 
             <div class="etiquetas">
-              <span class="etiqueta rojo">VER DETALLE</span>
-              <span class="etiqueta amarillo">{{ pelicula.genero }}</span>
-              <span class="etiqueta naranja">{{ pelicula.clasificacion }}</span>
-              <span class="etiqueta gris">{{ pelicula.duracion }} MINUTOS</span>
+              <span
+  class="etiqueta rojo"
+  @click="$router.push(`/pelicula/${pelicula.id}`)"
+              >VER DETALLE
+              </span>
+              <span class="etiqueta amarillo">
+                {{ pelicula.formatoPrincipal || "GENERAL" }}
+              </span>
+              <span class="etiqueta naranja">
+                {{ pelicula.clasificacion }}
+              </span>
+              <span class="etiqueta gris">
+                {{ pelicula.duracion || "120" }} MINUTOS
+              </span>
             </div>
 
             <p class="subtitulo">Horarios disponibles</p>
 
             <div class="opciones">
-              <span class="modo">2D</span>
-              <span class="texto">DOBLADA</span>
-              <span class="texto">Sillas: GENERAL</span>
+              <span v-if="pelicula.formatos.es2D" class="modo">2D</span>
+              <span v-if="pelicula.formatos.es3D" class="modo">3D</span>
+              <span v-if="pelicula.formatos.doblada" class="texto">DOBLADA</span>
+              <span class="texto">
+                Sillas disponibles: {{ pelicula.disponibilidadSillas }}
+              </span>
 
-              <!-- Imagen D-BOX (única que se mantiene visible) -->
               <img
-                v-if="pelicula.formato === 'D-BOX'"
+                v-if="pelicula.formatos.dbox"
                 src="@/assets/dbox.png"
                 alt="D-BOX"
                 class="dbox"
@@ -71,54 +85,40 @@
             </div>
 
             <div class="horario">
-              <span>{{ pelicula.horario }}</span>
+              <span v-for="hora in pelicula.horarios" :key="hora">
+                {{ hora }}
+              </span>
             </div>
           </div>
         </div>
+
+        <!-- Si no hay estrenos -->
+        <p v-if="peliculasEstreno.length === 0" class="sin-estrenos">
+          No hay estrenos disponibles en este momento.
+        </p>
       </main>
     </div>
   </div>
 </template>
 
 <script setup>
-const dias = [
-  { nombre: 'Dom.', fecha: '05 OCT. 2025', activo: false },
-  { nombre: 'Lun.', fecha: '06 OCT. 2025', activo: false },
-  { nombre: 'Mar.', fecha: '07 OCT. 2025', activo: false },
-  { nombre: 'Mié.', fecha: '08 OCT. 2025', activo: false },
-  { nombre: 'Jue.', fecha: '09 OCT. 2025', activo: false },
-  { nombre: 'Vie.', fecha: '10 OCT. 2025', activo: true },
-  { nombre: 'Sáb.', fecha: '11 OCT. 2025', activo: false },
-];
+import { peliculas } from "@/api/PeliculasService";
 
-const peliculas = [
-  {
-    titulo: 'Una Batalla Tras Otra',
-    genero: 'ACCIÓN',
-    clasificacion: '+12 AÑOS',
-    duracion: 160,
-    formato: 'general',
-    horario: '22:00',
-    imagen: new URL('@/assets/batallatras.jpeg', import.meta.url).href,
-  },
-  {
-    titulo: 'Demon Slayer: Castillo Inf',
-    genero: 'ANIMACIÓN',
-    clasificacion: '+12 AÑOS',
-    duracion: 150,
-    formato: 'general',
-    horario: '21:15',
-    imagen: new URL('@/assets/demon-slayer.jpeg', import.meta.url).href,
-  },
-  {
-    titulo: 'El Conjuro 4',
-    genero: 'TERROR',
-    clasificacion: '+15 AÑOS',
-    duracion: 135,
-    formato: 'D-BOX',
-    horario: '23:00',
-    imagen: new URL('@/assets/el-conjuro.jpeg', import.meta.url).href,
-  },
+// Filtrar solo estrenos (fecha <= hoy)
+const hoy = new Date();
+const peliculasEstreno = peliculas.filter((p) => {
+  const fechaEstreno = new Date(p.fechaEstreno);
+  return fechaEstreno <= hoy;
+});
+
+const dias = [
+  { nombre: "Dom.", fecha: "05 OCT. 2025", activo: false },
+  { nombre: "Lun.", fecha: "06 OCT. 2025", activo: false },
+  { nombre: "Mar.", fecha: "07 OCT. 2025", activo: false },
+  { nombre: "Mié.", fecha: "08 OCT. 2025", activo: false },
+  { nombre: "Jue.", fecha: "09 OCT. 2025", activo: false },
+  { nombre: "Vie.", fecha: "10 OCT. 2025", activo: false },
+  { nombre: "Sáb.", fecha: "11 OCT. 2025", activo: false },
 ];
 </script>
 
@@ -182,7 +182,7 @@ const peliculas = [
   width: 30%;
   background: white;
   border: 1px solid #eee;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .imagen-buenavista {
@@ -243,7 +243,7 @@ const peliculas = [
   height: 360px;
   object-fit: cover;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .info-pelicula h2 {
@@ -268,10 +268,27 @@ const peliculas = [
   font-weight: bold;
 }
 
-.rojo { background: #b00000; }
-.amarillo { background: #e0a100; }
-.naranja { background: #e36c19; }
-.gris { background: #ddd; color: #333; }
+.etiqueta.rojo {
+  background-color: #e50914;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.etiqueta.rojo:hover {
+  background-color: #96101e;
+  transform: scale(1.05);
+}
+
+.amarillo {
+  background: #e0a100;
+}
+.naranja {
+  background: #e36c19;
+}
+.gris {
+  background: #ddd;
+  color: #333;
+}
 
 .subtitulo {
   margin-top: 15px;
@@ -284,6 +301,7 @@ const peliculas = [
   align-items: center;
   gap: 10px;
   margin-top: 8px;
+  flex-wrap: wrap;
 }
 
 .modo {
@@ -305,6 +323,9 @@ const peliculas = [
 
 .horario {
   margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .horario span {
@@ -313,6 +334,14 @@ const peliculas = [
   border-radius: 5px;
   font-weight: 600;
   color: #333;
+}
+
+.sin-estrenos {
+  text-align: center;
+  color: #666;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 40px;
 }
 
 /* ======= RESPONSIVO ======= */

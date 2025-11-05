@@ -1,27 +1,37 @@
 <template>
   <section class="cartelera">
-    <h2>ESTRENOS / CARTELERA</h2>
+    <h2>ESTRENOS</h2>
 
     <!-- Flechas -->
     <button class="arrow left" @click="prevMovie">&#10094;</button>
     <div class="cartelera-slider">
       <div
         v-for="(movie, index) in visibleMovies"
-        :key="index"
+        :key="movie.id || index"
         class="movie-card"
       >
         <div class="poster">
-          <img :src="require(`@/assets/${movie.image}`)" :alt="movie.title" />
+          <img :src="movie.imagen" :alt="movie.titulo" />
           <!-- Overlay al hacer hover -->
           <div class="overlay">
             <div class="circle">
               <span>+</span>
             </div>
-            <p>{{ movie.format }}</p>
-            <p>{{ movie.duration }}</p>
+            <p>
+              {{
+                [
+                  movie.formatos.es2D ? "2D" : "",
+                  movie.formatos.es3D ? "3D" : "",
+                  movie.formatos.dbox ? "D-BOX" : "",
+                ]
+                  .filter(Boolean)
+                  .join(" / ")
+              }}
+            </p>
+            <p>{{ movie.clasificacion }}</p>
           </div>
         </div>
-        <div class="movie-footer">
+        <div class="movie-footer" @click="$router.push(`/pelicula/${movie.id}`)">
           <p>VER HORARIOS</p>
         </div>
       </div>
@@ -36,59 +46,29 @@
 </template>
 
 <script>
+import { peliculas } from "@/api/PeliculasService";
+
 export default {
   name: "MisEstrenos",
   data() {
     return {
       currentIndex: 0,
-      movies: [
-        {
-          title: "Demon Slayer",
-          image: "demon.jpg",
-          format: "2D / PREMIER",
-          duration: "120 min | +12",
-        },
-        {
-          title: "Toy Story Reestreno",
-          image: "toy.jpg",
-          format: "2D / General",
-          duration: "80 min | Todos",
-        },
-        {
-          title: "El Conjuro 4",
-          image: "conjuro.jpg",
-          format: "3D / PREMIER",
-          duration: "130 min | +15",
-        },
-        {
-          title: "Mascotas al Rescate",
-          image: "mascotas.jpg",
-          format: "2D / General",
-          duration: "95 min | Todos",
-        },
-        {
-          title: "Los Tipos Malos",
-          image: "malos.jpg",
-          format: "2D / PREMIER",
-          duration: "110 min | +7",
-        },
-        {
-          title: "Otro Viernes de Locos",
-          image: "viernes.jpg",
-          format: "2D / General",
-          duration: "105 min | Todos",
-        },
-      ],
+      movies: [],
     };
   },
   computed: {
     visibleMovies() {
-      return this.movies.slice(this.currentIndex, this.currentIndex + 5);
+      const visibles = this.movies.slice(0, 7);
+      return visibles.slice(this.currentIndex, this.currentIndex + 5);
     },
   },
   methods: {
+    async cargarPeliculas() {
+      // 🔥 Filtra solo los estrenos
+      this.movies = peliculas.filter((p) => p.estado === "estreno");
+    },
     nextMovie() {
-      if (this.currentIndex < this.movies.length - 5) {
+      if (this.currentIndex < Math.max(this.movies.length - 5, 0)) {
         this.currentIndex++;
       }
     },
@@ -97,6 +77,9 @@ export default {
         this.currentIndex--;
       }
     },
+  },
+  mounted() {
+    this.cargarPeliculas();
   },
 };
 </script>
@@ -140,6 +123,8 @@ export default {
 
 .poster img {
   width: 100%;
+  height: 270px;
+  object-fit: cover;
   display: block;
 }
 

@@ -5,7 +5,7 @@
       <div class="footer-col">
         <h4>Sobre Cinemark</h4>
         <ul>
-          <li><a href="#">Quiénes somos</a></li>
+          <li><a href="conocenos">Quiénes somos</a></li>
         </ul>
       </div>
 
@@ -13,7 +13,7 @@
       <div class="footer-col">
         <h4>Contacto</h4>
         <ul>
-          <li><a href="#">Contáctanos (PQRS)</a></li>
+          <li><a href="contacto">Contáctanos (PQRS)</a></li>
         </ul>
       </div>
 
@@ -21,8 +21,7 @@
       <div class="footer-col">
         <h4>Legal</h4>
         <ul>
-          <li><a href="#">Términos y condiciones</a></li>
-          <li><a href="#">Notificaciones judiciales</a></li>
+          <li><a href="legal">Términos y condiciones</a></li>
           <li><a href="https://sedeelectronica.sic.gov.co/atencion-y-servicios-a-la-ciudadania">www.sic.gov.co</a></li>
         </ul>
       </div>
