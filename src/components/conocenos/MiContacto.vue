@@ -25,7 +25,7 @@
       <hr />
 
       <div class="boton">
-        <button class="btn-red">ENVIAR SOLICITUD</button>
+        <button class="btn-red" @click="enviarCorreo">ENVIAR SOLICITUD</button>
       </div>
     </div>
   </section>
@@ -33,7 +33,20 @@
 
 <script>
 export default {
-  name: 'MiContacto'
+  name: 'MiContacto',
+  methods: {
+    enviarCorreo() {
+      const destinatario = "servicioalcliente@cinemark.com.co";
+      const asunto = encodeURIComponent("Solicitud PQRS - Cinemark Colombia");
+      const cuerpo = encodeURIComponent(
+        "Estimado equipo de Cinemark,\n\nDeseo presentar la siguiente petición, queja, reclamo o sugerencia:\n\n[Escriba aquí su mensaje]\n\nAtentamente,\n[Su nombre]"
+      );
+
+      // Abre Gmail directamente en la misma pestaña
+      const gmailURL = `https://mail.google.com/mail/?view=cm&fs=1&to=${destinatario}&su=${asunto}&body=${cuerpo}`;
+      window.open(gmailURL, "_self");
+    }
+  }
 }
 </script>
 

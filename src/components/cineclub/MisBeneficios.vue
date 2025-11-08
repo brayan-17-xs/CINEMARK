@@ -1,7 +1,5 @@
 <template>
   <div class="container-beneficios">
-
-    <!-- TÍTULO GENERAL -->
     <header class="header-beneficios">
       <h1>¿Por qué asociarte?</h1>
       <p class="subtitulo">
@@ -10,26 +8,21 @@
       </p>
     </header>
 
-    <!-- BLOQUE 1 -->
     <section class="beneficio">
       <div class="izquierda">
         <img :src="iconBoletas" alt="Boletas de regalo" class="icono" />
       </div>
       <div class="texto">
         <p>
-          Siendo <strong>Cine Club Pro</strong>, tendrás <strong>2 boletas de regalo POR MES</strong>,
-          para utilizar durante 60 días en formatos 2D, 3D y XD general.
-          ¡Disponibles desde el momento que te asocias!
+          Siendo <strong>Cine Club Pro</strong>, tendrás <strong>2 boletas de regalo POR MES</strong>.
         </p>
       </div>
     </section>
 
-    <!-- BLOQUE 2 -->
     <section class="beneficio alterno">
       <div class="texto">
         <p>
-          ¿Te imaginas ir al cine con <strong>descuentos todos los días</strong>?  
-          Con tu membresía <strong>Cine Club Pro</strong> adquieres tus boletas con <strong>hasta 50% off</strong> todos los días.  
+          Con tu membresía <strong>Cine Club Pro</strong> adquieres tus boletas con <strong>hasta 50% off</strong>.  
           Si eres <strong>Cine Club Gold</strong>, tendrás hasta 50% los martes y miércoles y 30% el resto de la semana.
         </p>
       </div>
@@ -38,40 +31,51 @@
       </div>
     </section>
 
-    <!-- BLOQUE 3 -->
     <section class="beneficio">
       <div class="izquierda">
         <img :src="iconConfiteria" alt="Descuento confitería" class="icono" />
       </div>
       <div class="texto">
         <p>
-          Además de <strong>regalos de bienvenida</strong>, si eres <strong>Cine Club Pro</strong> podrás adquirir tus combos
-          online y en sala con <strong>hasta 30% de descuento</strong>.  
-          Con tu plan <strong>Gold</strong> hasta 20%. ¡No te lo pierdas!
+          Además, si eres <strong>Cine Club Pro</strong> podrás adquirir tus combos
+          con <strong>hasta 30% de descuento</strong>.  
+          Con tu plan <strong>Gold</strong> hasta 20%.
         </p>
       </div>
     </section>
 
-    <!-- BOTONES -->
     <div class="botones-final">
-      <button class="btn-gold">SUSCRIBIRME A CINE CLUB GOLD</button>
-      <button class="btn-pro">SUSCRIBIRME A CINE CLUB PRO</button>
+      <button class="btn-gold" @click="irACompra('Gold')">SUSCRIBIRME A CINE CLUB GOLD</button>
+      <button class="btn-pro" @click="irACompra('Pro')">SUSCRIBIRME A CINE CLUB PRO</button>
     </div>
   </div>
 </template>
 
 <script>
-import iconBoletas from '@/assets/icon-boletas.png'
-import iconDescuento from '@/assets/icon-descuento.png'
-import iconConfiteria from '@/assets/icon-confiteria.png'
+import iconBoletas from "@/assets/icon-boletas.png";
+import iconDescuento from "@/assets/icon-descuento.png";
+import iconConfiteria from "@/assets/icon-confiteria.png";
 
 export default {
-  name: 'MisBeneficios',
+  name: "MisBeneficios",
   data() {
-    return { iconBoletas, iconDescuento, iconConfiteria }
-  }
-}
+    return { iconBoletas, iconDescuento, iconConfiteria };
+  },
+  methods: {
+    irACompra(tipo) {
+      const precios = { Gold: 99900, Pro: 28900 };
+      const productoSeleccionado = {
+        tipo: "Membresía",
+        nombre: `Cine Club ${tipo}`,
+        valor: precios[tipo] || 0,
+      };
+      localStorage.setItem("productoSeleccionado", JSON.stringify(productoSeleccionado));
+      this.$router.push({ path: "/compra" }).catch(() => {});
+    },
+  },
+};
 </script>
+
 
 <style scoped>
 .container-beneficios {

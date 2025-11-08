@@ -14,6 +14,7 @@ import LegalView from '../views/LegalView.vue'
 import FormatosView from '../views/FormatosView.vue'
 import InfoView from '@/views/InfoView.vue'
 import CompraView from '@/views/CompraView.vue'
+import AsientosView from '@/views/AsientosView.vue'
 
 const routes = [
   {
@@ -90,6 +91,11 @@ const routes = [
     path: "/compra",
     name: "compra",
     component: CompraView,
+  },
+  {
+    path: "/asientos",
+    name: "asientos",
+    component: AsientosView,
   },
   {
     path: '/about',

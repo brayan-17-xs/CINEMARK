@@ -51,10 +51,9 @@
 
             <div class="etiquetas">
               <span
-  class="etiqueta rojo"
-  @click="$router.push(`/pelicula/${pelicula.id}`)"
-              >VER DETALLE
-              </span>
+                class="etiqueta rojo"
+                @click="$router.push(`/pelicula/${pelicula.id}`)"
+              >VER DETALLE</span>
               <span class="etiqueta amarillo">
                 {{ pelicula.formatoPrincipal || "GENERAL" }}
               </span>
@@ -84,8 +83,13 @@
               />
             </div>
 
+            <!-- BOTONES DE HORARIO -->
             <div class="horario">
-              <span v-for="hora in pelicula.horarios" :key="hora">
+              <span
+                v-for="hora in pelicula.horarios"
+                :key="hora"
+                @click="seleccionarHorario(pelicula, hora)"
+              >
                 {{ hora }}
               </span>
             </div>
@@ -103,6 +107,9 @@
 
 <script setup>
 import { peliculas } from "@/api/PeliculasService";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 // Filtrar solo estrenos (fecha <= hoy)
 const hoy = new Date();
@@ -120,6 +127,27 @@ const dias = [
   { nombre: "Vie.", fecha: "10 OCT. 2025", activo: false },
   { nombre: "Sáb.", fecha: "11 OCT. 2025", activo: false },
 ];
+
+// ✅ Método actualizado para seleccionar horario
+function seleccionarHorario(pelicula, hora) {
+  const infoPelicula = {
+    tipo: "Tiquete", // tipo de producto
+    producto: "Boleta", // nombre del producto
+    tituloPelicula: pelicula.titulo,
+    horario: hora,
+    tipoboleta: pelicula.formatoPrincipal || "General", // 2D, 3D, VIP, etc.
+    clasificacion: pelicula.clasificacion,
+    valor: pelicula.valor || 15000, // valor base
+  };
+
+  // Guardar info para usar luego en MisAsientos.vue
+  localStorage.setItem("infoPelicula", JSON.stringify(infoPelicula));
+
+  console.log("🎬 Información de película guardada:", infoPelicula);
+
+  // Ir a seleccionar asientos
+  router.push({ path: "/asientos" }).catch(() => {});
+}
 </script>
 
 <style scoped>
@@ -321,6 +349,7 @@ const dias = [
   height: 20px;
 }
 
+/* ======= HORARIOS ======= */
 .horario {
   margin-top: 10px;
   display: flex;
@@ -334,6 +363,14 @@ const dias = [
   border-radius: 5px;
   font-weight: 600;
   color: #333;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.horario span:hover {
+  background: #a00000;
+  color: white;
+  transform: scale(1.05);
 }
 
 .sin-estrenos {

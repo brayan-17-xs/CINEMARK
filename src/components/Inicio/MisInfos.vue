@@ -30,40 +30,39 @@
     </div>
 
     <!-- Horarios disponibles -->
-<div class="horarios">
-  <div class="encabezado">
-    <h3>horarios disponibles</h3>
-    <span class="nota">* Los horarios aquí expuestos representan el inicio de cada función</span>
-  </div>
+    <div class="horarios">
+      <div class="encabezado">
+        <h3>horarios disponibles</h3>
+        <span class="nota">* Los horarios aquí expuestos representan el inicio de cada función</span>
+      </div>
 
-  <div class="bloque-funcion">
-    <div class="etiquetas">
-      <span v-if="pelicula.formatos.es2D" class="tag">2D</span>
-      <span v-if="pelicula.formatos.es3D" class="tag">3D</span>
-      <span v-if="pelicula.formatos.dbox" class="tag dbox">D-BOX</span>
-      <span v-if="pelicula.formatos.doblada" class="tag">DOBLADA</span>
-      <span class="sillas">Sillas disponibles: {{ pelicula.disponibilidadSillas }}</span>
+      <div class="bloque-funcion">
+        <div class="etiquetas">
+          <span v-if="pelicula.formatos.es2D" class="tag">2D</span>
+          <span v-if="pelicula.formatos.es3D" class="tag">3D</span>
+          <span v-if="pelicula.formatos.dbox" class="tag dbox">D-BOX</span>
+          <span v-if="pelicula.formatos.doblada" class="tag">DOBLADA</span>
+          <span class="sillas">Sillas disponibles: {{ pelicula.disponibilidadSillas }}</span>
+        </div>
+
+        <hr />
+
+        <div class="tipos-sala">
+          <span v-for="(sala, i) in pelicula.tiposSala" :key="i" class="sala">{{ sala }}</span>
+        </div>
+
+        <div class="horas">
+          <button
+            v-for="(hora, h) in pelicula.horarios"
+            :key="h"
+            class="hora-btn"
+            @click="seleccionarHorario(pelicula, hora)"
+          >
+            {{ hora }}
+          </button>
+        </div>
+      </div>
     </div>
-
-    <hr />
-
-    <div class="tipos-sala">
-      <span v-for="(sala, i) in pelicula.tiposSala" :key="i" class="sala">{{ sala }}</span>
-    </div>
-
-    <div class="horas">
-      <button
-        v-for="(hora, h) in pelicula.horarios"
-        :key="h"
-        class="hora-btn"
-      >
-        {{ hora }}
-      </button>
-    </div>
-  </div>
-</div>
-
-
   </section>
 
   <div v-else class="cargando">Cargando información...</div>
@@ -82,6 +81,24 @@ export default {
   mounted() {
     const id = parseInt(this.$route.params.id);
     this.pelicula = peliculas.find((p) => p.id === id);
+  },
+  methods: {
+    seleccionarHorario(pelicula, hora) {
+      const infoPelicula = {
+        tipo: "Tiquete", // Tipo de producto
+        producto: "Boleta", // Nombre del producto
+        tituloPelicula: pelicula.titulo,
+        horario: hora,
+        tipoboleta: pelicula.formatoPrincipal || "General", // 2D, 3D, VIP, etc.
+        clasificacion: pelicula.clasificacion,
+        valor: pelicula.valor || 15000, // Valor base o predeterminado
+      };
+
+      localStorage.setItem("infoPelicula", JSON.stringify(infoPelicula));
+      console.log("🎬 Información guardada:", infoPelicula);
+
+      this.$router.push({ path: "/asientos" }).catch(() => {});
+    },
   },
 };
 </script>
@@ -219,6 +236,7 @@ export default {
   display: flex;
   gap: 10px;
   margin-top: 10px;
+  flex-wrap: wrap;
 }
 
 .hora-btn {
@@ -236,5 +254,4 @@ export default {
   border-color: #d40000;
   color: #d40000;
 }
-
 </style>

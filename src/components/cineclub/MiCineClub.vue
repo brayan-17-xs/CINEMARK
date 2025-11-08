@@ -1,6 +1,5 @@
 <template>
   <div class="container-membresias">
-    <!-- TÍTULO GENERAL -->
     <header class="header-membresias">
       <h1>CINE CLUB CINEMARK</h1>
       <p class="subtitulo">
@@ -8,7 +7,6 @@
       </p>
     </header>
 
-    <!-- TARJETAS GENERADAS -->
     <div class="membresias">
       <div
         v-for="membresia in membresias"
@@ -20,9 +18,11 @@
           <h2>
             CINE CLUB <span>{{ membresia.tipo }}</span>
           </h2>
-          <p class="descripcion">{{ membresia.descripcion || "Disfruta beneficios exclusivos" }}</p>
+          <p class="descripcion">
+            {{ membresia.descripcion || "Disfruta beneficios exclusivos" }}
+          </p>
           <p class="precio">
-            ${{ membresia.precio.toLocaleString() }} 
+            ${{ membresia.precio.toLocaleString() }}
             <span v-if="membresia.tipo === 'Gold'">/ por año</span>
             <span v-else>/ pago mensual</span>
           </p>
@@ -34,8 +34,8 @@
         <div class="beneficios">
           <ul>
             <li v-for="(beneficio, index) in membresia.beneficios" :key="index">
-              <strong>{{ beneficio.split(" ")[0] }}</strong>
-              {{ beneficio.substring(beneficio.indexOf(" ")) }}
+              <strong>{{ beneficio.split(' ')[0] }}</strong>
+              {{ beneficio.substring(beneficio.indexOf(' ')) }}
             </li>
           </ul>
         </div>
@@ -45,7 +45,7 @@
             :class="membresia.tipo === 'Gold' ? 'btn-gold' : 'btn-pro'"
             @click="irACompra(membresia)"
           >
-            VER MEMBRESÍA
+            SUSCRIBIRME A CINE CLUB {{ membresia.tipo.toUpperCase() }}
           </button>
         </div>
       </div>
@@ -59,28 +59,22 @@ import { membresias } from "@/api/MenbresiaService";
 export default {
   name: "MiCineClub",
   data() {
-    return {
-      membresias,
-    };
+    return { membresias };
   },
   methods: {
     irACompra(membresia) {
-  console.log('Click detectado en:', membresia);
-
-  const productoSeleccionado = {
-    tipo: 'Membresías',
-    nombre: membresia.tipo,
-    valor: membresia.precio
-  };
-
-  localStorage.setItem('productoSeleccionado', JSON.stringify(productoSeleccionado));
-
-  this.$router.push({ path: '/compra' }).catch(() => {});
-}
-
+      const productoSeleccionado = {
+        tipo: "Membresía",
+        nombre: `Cine Club ${membresia.tipo}`,
+        valor: membresia.precio,
+      };
+      localStorage.setItem("productoSeleccionado", JSON.stringify(productoSeleccionado));
+      this.$router.push({ path: "/compra" }).catch(() => {});
+    },
   },
 };
 </script>
+
 
 
 <style scoped>

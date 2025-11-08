@@ -13,6 +13,7 @@
   <RouterLink to="/formatos"></RouterLink>
   <RouterLink to="/pelicula/:id"></RouterLink>
   <RouterLink to="/compra"></RouterLink>
+  <RouterLink to="/asientos"></RouterLink>
   <RouterView/>
 </template>
 

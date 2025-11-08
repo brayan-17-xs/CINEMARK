@@ -3,28 +3,28 @@
 export const boleteria = [
   {
     id: 1,
-    tipo: "VIP",
+    tipoboleta: "VIP",
     valor: 25000,
     sala: 1,
     sillas: generarSillas(["A", "B", "C"], 8) // Filas A-C, 8 sillas por fila
   },
   {
     id: 2,
-    tipo: "Común",
+    tipoboleta: "Común",
     valor: 18000,
     sala: 2,
     sillas: generarSillas(["A", "B", "C", "D", "E"], 10) // Filas A-E, 10 sillas por fila
   },
   {
     id: 3,
-    tipo: "3D",
+    tipoboleta: "3D",
     valor: 22000,
     sala: 3,
     sillas: generarSillas(["A", "B", "C", "D"], 9)
   },
   {
     id: 4,
-    tipo: "2D",
+    tipoboleta: "2D",
     valor: 16000,
     sala: 4,
     sillas: generarSillas(["A", "B", "C", "D", "E"], 8)

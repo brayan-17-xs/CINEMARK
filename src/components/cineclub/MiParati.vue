@@ -1,9 +1,7 @@
 <template>
   <div class="container-programa">
-    <!-- FONDO SUPERIOR -->
     <div class="fondo-superior"></div>
 
-    <!-- CONTENIDO PRINCIPAL -->
     <section class="contenido">
       <h2>¿Para quién está pensado el programa?</h2>
       <p class="descripcion">
@@ -11,7 +9,6 @@
         para que ahorres en cada salida.
       </p>
 
-      <!-- LISTA DE BENEFICIOS -->
       <ul class="lista-beneficios">
         <li>Para quienes van al cine al menos 1 vez al mes</li>
         <li>Para grupos familiares</li>
@@ -20,7 +17,6 @@
         <li>Para los que no quieren pagar de más</li>
       </ul>
 
-      <!-- BOTONES -->
       <div class="botones">
         <button class="btn-gold" @click="irACompra('Gold')">
           SUSCRIBIRME A CINE CLUB GOLD
@@ -31,43 +27,28 @@
       </div>
     </section>
 
-    <!-- FONDO INFERIOR -->
     <div class="fondo-inferior"></div>
   </div>
 </template>
 
 <script>
-import fondoSuperior from '@/assets/fondosuperior.jpg'
-import fondoInferior from '@/assets/gold-club.png'
-import { membresias } from '@/api/MenbresiaService' // ✅ corregido
-
 export default {
-  name: 'MiParati',
-  data() {
-    return {
-      fondoSuperior,
-      fondoInferior,
-      membresias, // ✅ corregido
-    };
-  },
+  name: "MiParati",
   methods: {
-    irACompra(membresia) {
-  console.log('Click detectado en:', membresia);
-  console.log('Router:', this.$router);
-
-  const productoSeleccionado = {
-    tipo: 'Membresías',
-    nombre: membresia.tipo,
-    valor: membresia.precio
-  };
-
-  localStorage.setItem('productoSeleccionado', JSON.stringify(productoSeleccionado));
-  this.$router.push({ path: '/compra' }).catch(() => {});
-}
-
+    irACompra(tipo) {
+      const precios = { Gold: 99900, Pro: 28900 };
+      const productoSeleccionado = {
+        tipo: "Membresía",
+        nombre: `Cine Club ${tipo}`,
+        valor: precios[tipo] || 0,
+      };
+      localStorage.setItem("productoSeleccionado", JSON.stringify(productoSeleccionado));
+      this.$router.push({ path: "/compra" }).catch(() => {});
+    },
   },
 };
 </script>
+
 
 <!-- (El estilo que tienes está bien, no requiere cambios) -->
 

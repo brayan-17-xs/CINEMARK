@@ -53,11 +53,6 @@ export default {
           "Avenida Libertador frente a la quinta de San Pedro Alejandrino Local 34",
         image: "buenavista.png",
       },
-      {
-        nombre: "PLAZA OCEAN MALL",
-        direccion: "Carrera 3 #29-52, Local 201, Santa Marta",
-        image: "ocean.jpg",
-      },
     ];
 
     return { filtros, teatros };

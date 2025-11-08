@@ -3,6 +3,7 @@
     <h2>Registro de Compra</h2>
 
     <form @submit.prevent="generarRecibo" class="formulario">
+      <!-- Campos personales -->
       <div class="campo">
         <label for="documento">Documento:</label>
         <input type="text" id="documento" v-model="compra.documento" required />
@@ -34,27 +35,38 @@
         />
       </div>
 
+      <!-- Datos del producto -->
       <div class="campo">
         <label>Tipo de producto:</label>
         <input type="text" v-model="compra.tipo" disabled />
       </div>
 
-      <div v-if="!compra.productos.length" class="campo">
-        <label for="producto">Nombre del producto:</label>
-        <input type="text" id="producto" v-model="compra.producto" disabled />
+      <!-- Si son tiquetes -->
+      <div v-if="compra.tipo === 'Tiquete'" class="campo tiqueteria">
+        <label>Boletas seleccionadas:</label>
+        <table>
+          <thead>
+            <tr>
+              <th>Silla</th>
+              <th>Fila</th>
+              <th>Sala</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(silla, i) in compra.asientos" :key="i">
+              <td>{{ silla.numero }}</td>
+              <td>{{ silla.fila }}</td>
+              <td>{{ compra.sala }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p><strong>Tipo de función:</strong> {{ compra.tipoBoleta }}</p>
+        <p class="total">Total: ${{ compra.valor.toLocaleString("es-CO") }}</p>
       </div>
 
-      <div v-if="!compra.productos.length" class="campo">
-        <label for="valor">Valor del producto:</label>
-        <input
-          type="text"
-          id="valor"
-          :value="`$${compra.valor.toLocaleString('es-CO')}`"
-          disabled
-        />
-      </div>
-
-      <div v-else class="campo confiteria">
+      <!-- Si son productos de confitería -->
+      <div v-else-if="compra.productos.length" class="campo confiteria">
         <label>Productos seleccionados:</label>
         <table>
           <thead>
@@ -75,6 +87,15 @@
         <p class="total">Total: ${{ compra.valor.toLocaleString("es-CO") }}</p>
       </div>
 
+      <!-- Si es un producto individual -->
+      <div v-else class="campo">
+        <label>Producto:</label>
+        <input type="text" v-model="compra.producto" disabled />
+
+        <label>Valor:</label>
+        <input :value="`$${compra.valor.toLocaleString('es-CO')}`" disabled />
+      </div>
+
       <div class="campo">
         <label>Fecha y hora:</label>
         <p>{{ compra.fecha }} - {{ compra.hora }}</p>
@@ -83,16 +104,29 @@
       <button type="submit" class="btn-generar">Generar Recibo</button>
     </form>
 
+    <!-- Recibo generado -->
     <div v-if="reciboGenerado" class="recibo">
       <h3>Recibo de Compra</h3>
       <p><strong>Nombre:</strong> {{ compra.nombre }}</p>
       <p><strong>Documento:</strong> {{ compra.documento }}</p>
       <p><strong>Correo:</strong> {{ compra.correo }}</p>
       <p><strong>Teléfono:</strong> {{ compra.telefono }}</p>
-      <p><strong>Número de cuenta:</strong> {{ compra.cuenta }}</p>
-      <p><strong>Tipo de producto:</strong> {{ compra.tipo }}</p>
+      <p><strong>Cuenta:</strong> {{ compra.cuenta }}</p>
+      <p><strong>Tipo:</strong> {{ compra.tipo }}</p>
 
-      <div v-if="compra.productos.length">
+      <!-- Boletas -->
+      <div v-if="compra.tipo === 'Tiquete'">
+        <p><strong>Producto:</strong> {{ compra.producto }} ({{ compra.tipoBoleta }})</p>
+        <ul>
+          <li v-for="(s, i) in compra.asientos" :key="i">
+            Fila {{ s.fila }} - Silla {{ s.numero }} (Sala {{ compra.sala }})
+          </li>
+        </ul>
+        <p><strong>Total:</strong> ${{ compra.valor.toLocaleString("es-CO") }}</p>
+      </div>
+
+      <!-- Confitería -->
+      <div v-else-if="compra.productos.length">
         <p><strong>Productos:</strong></p>
         <ul>
           <li v-for="(p, i) in compra.productos" :key="i">
@@ -102,6 +136,7 @@
         <p><strong>Total:</strong> ${{ compra.valor.toLocaleString("es-CO") }}</p>
       </div>
 
+      <!-- Producto individual -->
       <div v-else>
         <p><strong>Producto:</strong> {{ compra.producto }}</p>
         <p><strong>Valor:</strong> ${{ compra.valor.toLocaleString("es-CO") }}</p>
@@ -109,7 +144,7 @@
 
       <p><strong>Fecha:</strong> {{ compra.fecha }}</p>
       <p><strong>Hora:</strong> {{ compra.hora }}</p>
-      <p class="confirmacion">Transacción generada correctamente</p>
+      <p class="confirmacion">🎬 Transacción generada correctamente</p>
     </div>
   </section>
 </template>
@@ -127,29 +162,41 @@ export default {
         cuenta: "",
         tipo: "",
         producto: "",
+        tipoBoleta: "",
         productos: [],
         valor: 0,
         fecha: new Date().toLocaleDateString("es-CO"),
         hora: new Date().toLocaleTimeString("es-CO"),
+        asientos: [],
+        sala: ""
       },
-      reciboGenerado: false,
+      reciboGenerado: false
     };
   },
   mounted() {
     const productoGuardado = localStorage.getItem("productoSeleccionado");
     if (productoGuardado) {
       const data = JSON.parse(productoGuardado);
-      this.compra.tipo = data.tipo;
 
-      if (data.tipo === "Membresías") {
-        this.compra.producto = data.nombre;
-        this.compra.valor = data.valor;
+      if (data.tipoGeneral === "Tiquete") {
+        this.compra.tipo = data.tipoGeneral;
+        this.compra.producto = data.producto; // "Boleta"
+        this.compra.tipoBoleta = data.tipoBoleta; // "3D", "VIP", etc.
+        this.compra.sala = data.sala;
+        this.compra.asientos = data.sillas || [];
+        this.compra.valor = data.valorTotal || 0;
       } else if (data.tipo === "Confitería") {
+        this.compra.tipo = data.tipo;
         this.compra.productos = data.productos;
         this.compra.valor = data.total;
+      } else if (data.tipo === "Membresías") {
+        this.compra.tipo = data.tipo;
+        this.compra.producto = data.nombre;
+        this.compra.valor = data.valor;
       } else {
-        this.compra.producto = data.nombre || "Producto desconocido";
-        this.compra.valor = data.valor || 0;
+        this.compra.tipo = data.tipo || "Producto";
+        this.compra.producto = data.producto || data.nombre || "Producto desconocido";
+        this.compra.valor = data.valorTotal || data.valor || 0;
       }
     }
   },
@@ -163,30 +210,11 @@ export default {
         this.compra.cuenta
       ) {
         this.reciboGenerado = true;
-
-        if (this.compra.tipo === "Membresías") {
-          let tipoMembresia = "";
-          const nombre = this.compra.producto.toLowerCase();
-          if (nombre.includes("gold")) tipoMembresia = "Gold";
-          else if (nombre.includes("pro")) tipoMembresia = "Pro";
-
-          if (tipoMembresia) {
-            localStorage.setItem("membresia", tipoMembresia);
-            window.dispatchEvent(
-              new CustomEvent("membresia-cambiada", {
-                detail: { tipo: tipoMembresia },
-              })
-            );
-            alert(`Recibo generado y membresía ${tipoMembresia} activada`);
-          }
-        } else {
-          alert("Recibo generado correctamente");
-        }
-
+        alert("Recibo generado correctamente");
         localStorage.removeItem("productoSeleccionado");
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -195,7 +223,7 @@ export default {
   max-width: 600px;
   margin: 40px auto;
   padding: 25px;
-  background: #E8E6E6;
+  background: #e8e6e6;
   color: #000;
   border-radius: 15px;
   font-family: "Poppins", sans-serif;
@@ -238,20 +266,24 @@ input[disabled] {
   color: #555;
 }
 
-.confiteria table {
+.confiteria table,
+.tiqueteria table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 5px;
 }
 
 .confiteria th,
-.confiteria td {
+.tiqueteria th,
+.confiteria td,
+.tiqueteria td {
   padding: 8px;
   border-bottom: 1px solid #999;
   text-align: center;
 }
 
-.confiteria th {
+.confiteria th,
+.tiqueteria th {
   background: #b80000;
   color: #fff;
 }
@@ -279,7 +311,7 @@ input[disabled] {
 .recibo {
   margin-top: 25px;
   padding: 20px;
-  background: #E8E6E6;
+  background: #e8e6e6;
   border-radius: 10px;
   border: 1px solid #b80000;
   color: #000;

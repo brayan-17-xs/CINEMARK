@@ -26,15 +26,6 @@
         </ul>
       </div>
 
-      <!-- Columna 4 -->
-      <div class="footer-col">
-        <h4>Marketing empresarial</h4>
-        <ul>
-          <li><a href="#">Ventas corporativas</a></li>
-          <li><a href="#">Eventos</a></li>
-          <li><a href="#">Publicidad</a></li>
-        </ul>
-      </div>
 
       <!-- Columna 5: Apps -->
       <div class="footer-col apps">
