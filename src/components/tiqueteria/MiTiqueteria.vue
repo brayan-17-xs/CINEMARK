@@ -50,7 +50,7 @@ export default {
   name: "MiTiqueteria",
   methods: {
     procederAlPago() {
-      console.log("🟢 Botón de pago presionado");
+      console.log(" Botón de pago presionado");
 
       const productoSeleccionado = {
         tipo: "Tiquetera",
@@ -60,13 +60,13 @@ export default {
 
       try {
         localStorage.setItem("productoSeleccionado", JSON.stringify(productoSeleccionado));
-        console.log("✅ Producto guardado:", productoSeleccionado);
+        console.log(" Producto guardado:", productoSeleccionado);
 
         // Redirección al formulario de compra
         this.$router.push({ path: "/compra" }).catch(() => {});
-        console.log("➡️ Redirigiendo a /compra...");
+        console.log(" Redirigiendo a /compra...");
       } catch (error) {
-        console.error("❌ Error al proceder al pago:", error);
+        console.error(" Error al proceder al pago:", error);
       }
     },
   },

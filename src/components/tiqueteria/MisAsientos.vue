@@ -81,7 +81,7 @@ export default {
 
       if (!sala || this.seleccionadas.length === 0) return;
 
-      // 🟩 Estructura actualizada sin claves duplicadas
+      //  Estructura actualizada sin claves duplicadas
       const productoSeleccionado = {
         tipoGeneral: "Tiquete",  // Tipo principal del producto
         producto: "Boleta",      // Nombre del producto
@@ -95,11 +95,11 @@ export default {
 
       try {
         localStorage.setItem("productoSeleccionado", JSON.stringify(productoSeleccionado));
-        console.log("✅ Asientos seleccionados guardados:", productoSeleccionado);
+        console.log(" Asientos seleccionados guardados:", productoSeleccionado);
 
         this.$router.push({ path: "/compra" }).catch(() => {});
       } catch (error) {
-        console.error("❌ Error al proceder al pago:", error);
+        console.error(" Error al proceder al pago:", error);
       }
     }
   }

@@ -144,7 +144,7 @@
 
       <p><strong>Fecha:</strong> {{ compra.fecha }}</p>
       <p><strong>Hora:</strong> {{ compra.hora }}</p>
-      <p class="confirmacion">🎬 Transacción generada correctamente</p>
+      <p class="confirmacion"> Transacción generada correctamente</p>
     </div>
   </section>
 </template>

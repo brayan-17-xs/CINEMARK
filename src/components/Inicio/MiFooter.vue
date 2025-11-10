@@ -27,7 +27,7 @@
       </div>
 
 
-      <!-- Columna 5: Apps -->
+      <!-- Columna 4: Apps -->
       <div class="footer-col apps">
         <h4>Descarga nuestra App</h4>
         <div class="apps-contenedor">
@@ -37,7 +37,7 @@
         </div>
       </div>
 
-      <!-- Columna 6: Redes -->
+      <!-- Columna 5: Redes -->
       <div class="footer-col redes">
         <h4> </h4>
         <div class="redes-contenedor">

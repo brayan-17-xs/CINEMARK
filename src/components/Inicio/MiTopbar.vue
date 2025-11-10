@@ -66,33 +66,33 @@ export default {
     }
 
     onMounted(() => {
-      // ✅ Cargar usuario guardado
+      //  Cargar usuario guardado
       const storedUser = localStorage.getItem('user')
       if (storedUser) {
         const { email } = JSON.parse(storedUser)
         userEmail.value = email
       }
 
-      // ✅ Cargar membresía si ya existe
+      //  Cargar membresía si ya existe
       const storedMembresia = localStorage.getItem('membresia')
       if (storedMembresia) {
         membresia.value = storedMembresia
       }
 
-      // 👂 Escuchar evento global cuando se compra una membresía
+      //  Escuchar evento global cuando se compra una membresía
       window.addEventListener('membresia-cambiada', (e) => {
   membresia.value = e.detail.tipo
-  localStorage.setItem('membresia', e.detail.tipo) // ✅ guarda el cambio
+  localStorage.setItem('membresia', e.detail.tipo) //  guarda el cambio
 })
 
     })
 
-    // ✅ Limpiar el listener al desmontar el componente
+    //  Limpiar el listener al desmontar el componente
     onUnmounted(() => {
       window.removeEventListener('membresia-cambiada', () => {})
     })
 
-    // 🎨 Color de la corona según membresía
+    //  Color de la corona según membresía
     const membresiaColor = computed(() => {
       switch (membresia.value) {
         case 'Gold':

@@ -50,9 +50,6 @@ export default {
 </script>
 
 
-<!-- (El estilo que tienes está bien, no requiere cambios) -->
-
-
 <style scoped>
 .container-programa {
   font-family: "Poppins", sans-serif;

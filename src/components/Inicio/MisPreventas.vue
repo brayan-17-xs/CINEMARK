@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     async cargarPeliculas() {
-      // 🔥 Filtra solo las que estén en preventa
+      //  Filtra solo las que estén en preventa
       this.movies = peliculas.filter((p) => p.estado === "preventa");
     },
     nextMovie() {

@@ -1,5 +1,3 @@
-// 📁 src/data/boleteria.js
-
 export const boleteria = [
   {
     id: 1,
@@ -31,7 +29,7 @@ export const boleteria = [
   }
 ]
 
-// 🪑 Función auxiliar para generar las sillas
+//  Función auxiliar para generar las sillas
 function generarSillas(filas, cantidadPorFila) {
   const sillas = []
   for (const fila of filas) {

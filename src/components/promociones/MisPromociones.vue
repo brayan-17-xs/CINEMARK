@@ -50,14 +50,14 @@ const promociones = [
 /* ===== GRID DE IMÁGENES ===== */
 .lista-promos {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 🔹 Dos imágenes por fila */
+  grid-template-columns: repeat(2, 1fr); /*  Dos imágenes por fila */
   gap: 40px;
   justify-items: center;
 }
 
 .imagen-promo {
-  width: 90%; /* 🔹 Más grande */
-  max-width: 700px; /* 🔹 Aumentado el tamaño máximo */
+  width: 90%; /*  Más grande */
+  max-width: 700px; /*  Aumentado el tamaño máximo */
   border-radius: 10px;
   object-fit: cover;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -72,7 +72,7 @@ const promociones = [
 /* ===== RESPONSIVO ===== */
 @media (max-width: 900px) {
   .lista-promos {
-    grid-template-columns: 1fr; /* 🔹 En pantallas pequeñas, una por fila */
+    grid-template-columns: 1fr; /*  En pantallas pequeñas, una por fila */
   }
 
   .imagen-promo {

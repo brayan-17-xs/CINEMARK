@@ -106,7 +106,7 @@ export default {
       localStorage.setItem("productoSeleccionado", JSON.stringify(productoSeleccionado));
 
       // Redirige a /compra
-      console.log("🛒 Producto guardado:", productoSeleccionado);
+      console.log(" Producto guardado:", productoSeleccionado);
       this.$router.push({ path: "/compra" }).catch(() => {});
     },
   },

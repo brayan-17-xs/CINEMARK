@@ -128,7 +128,7 @@ const dias = [
   { nombre: "Sáb.", fecha: "11 OCT. 2025", activo: false },
 ];
 
-// ✅ Método actualizado para seleccionar horario
+//  Método actualizado para seleccionar horario
 function seleccionarHorario(pelicula, hora) {
   const infoPelicula = {
     tipo: "Tiquete", // tipo de producto
@@ -143,7 +143,7 @@ function seleccionarHorario(pelicula, hora) {
   // Guardar info para usar luego en MisAsientos.vue
   localStorage.setItem("infoPelicula", JSON.stringify(infoPelicula));
 
-  console.log("🎬 Información de película guardada:", infoPelicula);
+  console.log(" Información de película guardada:", infoPelicula);
 
   // Ir a seleccionar asientos
   router.push({ path: "/asientos" }).catch(() => {});

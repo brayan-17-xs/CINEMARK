@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     async cargarPeliculas() {
-      // 🔥 Filtra solo los estrenos
+      //  Filtra solo los estrenos
       this.movies = peliculas.filter((p) => p.estado === "estreno");
     },
     nextMovie() {

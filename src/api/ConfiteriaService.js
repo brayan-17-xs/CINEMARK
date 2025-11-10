@@ -1,5 +1,5 @@
 export const confiteria = [
-  // 🥤 COMBOS
+  //  COMBOS
   {
     id: 1,
     nombre: "Combo Tron Ares Premium",
@@ -65,7 +65,7 @@ export const confiteria = [
     imagen: new URL('@/assets/palomitas.jpeg', import.meta.url).href,
   },
 
-  // 🍿 CRISPETAS
+  //  CRISPETAS
   {
     id: 9,
     nombre: "Crispetas Grandes",
@@ -91,7 +91,7 @@ export const confiteria = [
     imagen: new URL('@/assets/crispetaspequeñas.jpg', import.meta.url).href,
   },
 
-  // 🧊 BEBIDAS
+  //  BEBIDAS
   {
     id: 12,
     nombre: "Icee Slush",
@@ -133,7 +133,7 @@ export const confiteria = [
     imagen: new URL('@/assets/lechecondensada.jpg', import.meta.url).href,
   },
 
-  // 🍫 SNACKS
+  //  SNACKS
   {
     id: 17,
     nombre: "Nachos",

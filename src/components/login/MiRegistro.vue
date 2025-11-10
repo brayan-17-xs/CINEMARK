@@ -1,12 +1,12 @@
 <template>
   <div class="registro-container">
 
-    <!-- 🖼️ ENCABEZADO CON IMAGEN -->
+    <!--  ENCABEZADO CON IMAGEN -->
     <header class="hero">
       <img src="@/assets/registro.png" alt="Encabezado Cine" class="hero-img" />
     </header>
 
-    <!-- 🧾 FORMULARIO -->
+    <!--  FORMULARIO -->
     <main class="form-section">
       <form @submit.prevent="handleRegister" class="register-form">
 
@@ -133,7 +133,7 @@ export default {
 
       // Guardar en localStorage
       localStorage.setItem('user', JSON.stringify(this.userData))
-      alert('✅ Registro exitoso. ¡Ahora puedes iniciar sesión!')
+      alert(' Registro exitoso. ¡Ahora puedes iniciar sesión!')
       this.$router.push('/') // Redirige si usas Vue Router
     }
   }
@@ -141,7 +141,7 @@ export default {
 </script>
 
 <style scoped>
-/* 🖼️ Imagen del encabezado */
+/*  Imagen del encabezado */
 .hero {
   width: 100%;
   height: 300px;
@@ -154,7 +154,7 @@ export default {
   object-fit: cover;
 }
 
-/* 📋 Formulario */
+/*  Formulario */
 .form-section {
   background-color: #fff;
   padding: 40px;

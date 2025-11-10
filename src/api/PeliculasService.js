@@ -1,4 +1,3 @@
-// src/services/peliculasService.js
 export const peliculas = [
   {
     id: 1,
