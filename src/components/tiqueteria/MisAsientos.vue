@@ -202,4 +202,121 @@ export default {
   background: #ccc;
   cursor: not-allowed;
 }
+/* =========================
+   🎟️ MEDIA QUERIES RESPONSIVE
+   ========================= */
+
+/* TABLETS (pantallas medianas, entre 768px y 1023px) */
+@media (max-width: 1023px) {
+  .boleteria {
+    padding: 30px 15px;
+  }
+
+  .encabezado h2 {
+    font-size: 22px;
+  }
+
+  .selector-sala select {
+    width: 60%;
+    font-size: 15px;
+  }
+
+  .mapa-sala {
+    max-width: 350px;
+    gap: 8px;
+    grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
+  }
+
+  .silla {
+    width: 42px;
+    height: 42px;
+    font-size: 14px;
+  }
+
+  .btn-continuar {
+    font-size: 15px;
+    padding: 10px 25px;
+  }
+}
+
+/* MÓVILES GRANDES (480px - 767px) */
+@media (max-width: 767px) {
+  .boleteria {
+    padding: 25px 10px;
+  }
+
+  .encabezado h2 {
+    font-size: 20px;
+  }
+
+  .encabezado p {
+    font-size: 14px;
+  }
+
+  .selector-sala {
+    margin: 20px 0;
+  }
+
+  .selector-sala label {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .selector-sala select {
+    width: 100%;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .mapa-sala {
+    max-width: 320px;
+    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+    gap: 8px;
+  }
+
+  .silla {
+    width: 38px;
+    height: 38px;
+    font-size: 13px;
+  }
+
+  .acciones {
+    margin-top: 30px;
+  }
+
+  .btn-continuar {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+/* MÓVILES PEQUEÑOS (menos de 480px) */
+@media (max-width: 479px) {
+  .encabezado h2 {
+    font-size: 18px;
+  }
+
+  .encabezado p {
+    font-size: 13px;
+  }
+
+  .mapa-sala {
+    grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
+    gap: 6px;
+    max-width: 280px;
+  }
+
+  .silla {
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+  }
+
+  .btn-continuar {
+    font-size: 13px;
+    padding: 9px;
+  }
+}
+
 </style>

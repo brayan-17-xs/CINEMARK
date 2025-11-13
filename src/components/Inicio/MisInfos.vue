@@ -254,4 +254,162 @@ export default {
   border-color: #d40000;
   color: #d40000;
 }
+/* 📱 Celulares pequeños (≤ 480px) */
+@media (max-width: 480px) {
+  .detalle {
+    padding: 20px;
+    gap: 25px;
+  }
+
+  .detalle-contenedor {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .poster img {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .info h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .info h4 {
+    font-size: 14px;
+  }
+
+  .etiquetas {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .etiquetas span {
+    font-size: 12px;
+    padding: 4px 10px;
+  }
+
+  .horarios {
+    padding: 15px;
+  }
+
+  .encabezado {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .encabezado h3 {
+    font-size: 16px;
+  }
+
+  .encabezado .nota {
+    font-size: 11px;
+  }
+
+  .tipos-sala {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .horas {
+    justify-content: center;
+  }
+
+  .hora-btn {
+    padding: 5px 12px;
+    font-size: 13px;
+  }
+}
+
+/* 📲 Celulares grandes / Tablets pequeñas (481px – 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .detalle {
+    padding: 25px;
+  }
+
+  .detalle-contenedor {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .poster img {
+    width: 80%;
+    max-width: 300px;
+  }
+
+  .info h2 {
+    font-size: 24px;
+  }
+
+  .etiquetas {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .horarios {
+    padding: 20px;
+  }
+
+  .hora-btn {
+    font-size: 14px;
+    padding: 6px 14px;
+  }
+}
+
+/* 💻 Tablets medianas (769px – 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .detalle {
+    padding: 30px;
+  }
+
+  .detalle-contenedor {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: left;
+  }
+
+  .poster img {
+    width: 280px;
+  }
+
+  .info h2 {
+    font-size: 26px;
+  }
+
+  .horarios {
+    padding: 25px;
+  }
+}
+
+/* 🖥️ Escritorios grandes (≥ 1025px) */
+@media (min-width: 1025px) {
+  .detalle {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .detalle-contenedor {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .poster img {
+    width: 320px;
+  }
+
+  .info h2 {
+    font-size: 30px;
+  }
+
+  .horarios {
+    padding: 25px;
+  }
+}
+
 </style>

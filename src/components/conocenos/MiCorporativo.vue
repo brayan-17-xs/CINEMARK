@@ -128,13 +128,96 @@ watch(
   color: #a10000;
 }
 
+/* 📱 --- Tablets (hasta 1024px) --- */
+@media (max-width: 1024px) {
+  .corporativo {
+    padding: 20px 0;
+  }
+
+  .corporativo-left h3 {
+    font-size: 17px;
+  }
+
+  .corporativo-left p {
+    font-size: 12px;
+  }
+
+  .corporativo-items {
+    gap: 40px;
+  }
+
+  .corporativo-item {
+    font-size: 13px;
+  }
+
+  .corporativo-item i {
+    font-size: 18px;
+  }
+}
+
+/* 📱 --- Teléfonos medianos (hasta 768px) --- */
 @media (max-width: 768px) {
   .contenedor {
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
+    text-align: center;
   }
+
+  .corporativo-left h3 {
+    font-size: 16px;
+  }
+
+  .corporativo-left p {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
   .corporativo-items {
-    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+  }
+
+  .corporativo-item {
+    font-size: 13px;
+  }
+
+  .corporativo-item i {
+    font-size: 18px;
   }
 }
+
+/* 📱 --- Teléfonos pequeños (hasta 480px) --- */
+@media (max-width: 480px) {
+  .corporativo {
+    padding: 15px 0;
+  }
+
+  .corporativo-left h3 {
+    font-size: 15px;
+  }
+
+  .corporativo-left p {
+    font-size: 11px;
+  }
+
+  .corporativo-items {
+    gap: 20px;
+  }
+
+  .corporativo-item {
+    font-size: 12px;
+  }
+
+  .corporativo-item i {
+    font-size: 16px;
+    margin-bottom: 3px;
+  }
+
+  .barra {
+    width: 60%;
+    height: 2px;
+  }
+}
+
 </style>

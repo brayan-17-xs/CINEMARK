@@ -79,10 +79,77 @@ export default {
   border-radius: 10px;
 }
 
-/* RESPONSIVO: 1 imagen por fila en pantallas pequeñas */
+/* 🖥️ PANTALLAS GRANDES (hasta 1200px) */
+@media (max-width: 1200px) {
+  .promociones {
+    padding: 50px 30px;
+  }
+  .promo-img {
+    height: 320px;
+  }
+  .promos-grid {
+    gap: 30px;
+  }
+}
+
+/* 💻 TABLETS HORIZONTALES (hasta 992px) */
+@media (max-width: 992px) {
+  .promociones {
+    padding: 50px 25px;
+  }
+  .promos-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+  .promo-img {
+    height: 300px;
+  }
+}
+
+/* 📱 TABLETS VERTICALES / PHABLETS (hasta 768px) */
 @media (max-width: 768px) {
+  .promociones {
+    padding: 40px 20px;
+  }
   .promos-grid {
     grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .promo-img {
+    height: 280px;
+  }
+  .promociones h1 {
+    font-size: 24px;
+  }
+}
+
+/* 📲 TELÉFONOS GRANDES (hasta 576px) */
+@media (max-width: 576px) {
+  .promociones {
+    padding: 35px 15px;
+  }
+  .promo-img {
+    height: 250px;
+  }
+  .promo-card {
+    border-radius: 10px;
+  }
+  .promo-card::after {
+    font-size: 13px;
+    padding: 10px 0;
+  }
+}
+
+/* 📞 TELÉFONOS PEQUEÑOS (hasta 400px) */
+@media (max-width: 400px) {
+  .promociones {
+    padding: 30px 10px;
+  }
+  .promo-img {
+    height: 220px;
+  }
+  .promo-card::after {
+    font-size: 12px;
   }
 }
 </style>

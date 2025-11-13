@@ -190,4 +190,99 @@ export default {
 .arrow.right {
   right: 10px;
 }
+/* 📱 Celulares pequeños (≤ 480px) */
+@media (max-width: 480px) {
+  .titulo-contenedor h2 {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .carousel {
+    max-width: 100%;
+  }
+
+  .carousel-item {
+    flex: 0 0 100%; /* 🔹 Solo una promo visible */
+    padding: 8px;
+  }
+
+  .promo-card img {
+    border-radius: 6px;
+  }
+
+  .overlay p {
+    font-size: 12px;
+    padding: 0 5px;
+  }
+
+  .overlay button {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 22px;
+  }
+
+  .arrow.left {
+    left: 5px;
+  }
+  .arrow.right {
+    right: 5px;
+  }
+}
+
+/* 📲 Celulares grandes y tablets pequeñas (481px – 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .titulo-contenedor h2 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .carousel-item {
+    flex: 0 0 50%; /* 🔹 2 promos visibles */
+    padding: 8px;
+  }
+
+  .overlay p {
+    font-size: 13px;
+  }
+
+  .arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 25px;
+  }
+}
+
+/* 💻 Tablets y pantallas medianas (769px – 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .carousel-item {
+    flex: 0 0 33.33%; /* 🔹 3 visibles (mantiene proporción) */
+  }
+
+  .titulo-contenedor h2 {
+    font-size: 24px;
+  }
+
+  .arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 26px;
+  }
+}
+
+/* 🖥️ Escritorios grandes (≥ 1025px) */
+@media (min-width: 1025px) {
+  .titulo-contenedor h2 {
+    font-size: 26px;
+  }
+
+  .carousel-item {
+    flex: 0 0 25%; /* 🔹 4 visibles si hay más promos en el futuro */
+  }
+}
+
 </style>

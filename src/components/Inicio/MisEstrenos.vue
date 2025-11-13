@@ -117,10 +117,6 @@ export default {
   transform: scale(1.05);
 }
 
-.poster {
-  position: relative;
-}
-
 .poster img {
   width: 100%;
   height: 270px;
@@ -128,13 +124,10 @@ export default {
   display: block;
 }
 
-/* Overlay en hover */
+/* Overlay */
 .overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: rgba(0, 0, 0, 0.7);
   color: #fff;
   opacity: 0;
@@ -144,11 +137,9 @@ export default {
   align-items: center;
   transition: opacity 0.3s;
 }
-
 .poster:hover .overlay {
   opacity: 1;
 }
-
 .circle {
   width: 60px;
   height: 60px;
@@ -162,7 +153,6 @@ export default {
   font-weight: bold;
 }
 
-/* Footer rojo con botón */
 .movie-footer {
   background: #d40000;
   color: #fff;
@@ -170,8 +160,8 @@ export default {
   font-weight: bold;
   font-size: 14px;
   cursor: pointer;
+  transition: background 0.3s;
 }
-
 .movie-footer:hover {
   background: #a00000;
 }
@@ -210,4 +200,137 @@ export default {
 .btn-ver-todas a:hover {
   background: #666;
 }
+
+/* 📱 Celulares pequeños (≤ 480px) */
+@media (max-width: 480px) {
+  .cartelera {
+    padding: 15px;
+  }
+
+  .cartelera h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .cartelera-slider {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    justify-content: flex-start;
+    gap: 10px;
+    padding-bottom: 10px;
+  }
+
+  .movie-card {
+    flex: 0 0 75%; /* 🔹 más pequeña pero visible */
+    width: auto;
+    scroll-snap-align: center;
+    transform: scale(0.95);
+  }
+
+  .poster img {
+    height: 200px;
+  }
+
+  .overlay p {
+    font-size: 11px;
+  }
+
+  .circle {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .movie-footer {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .arrow {
+    display: none;
+  }
+
+  .btn-ver-todas a {
+    font-size: 13px;
+    padding: 8px 18px;
+  }
+}
+
+/* 📲 Celulares grandes / Tablets pequeñas (481px – 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .cartelera h2 {
+    font-size: 22px;
+  }
+
+  .cartelera-slider {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 12px;
+  }
+
+  .movie-card {
+    flex: 0 0 42%; /* 🔹 2 visibles */
+    transform: scale(0.96);
+  }
+
+  .poster img {
+    height: 230px;
+  }
+
+  .circle {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+
+  .movie-footer {
+    font-size: 13px;
+  }
+
+  .arrow {
+    font-size: 26px;
+  }
+}
+
+/* 💻 Tablets medianas (769px – 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .cartelera h2 {
+    font-size: 24px;
+  }
+
+  .movie-card {
+    width: 150px; /* 🔹 antes 160px */
+  }
+
+  .poster img {
+    height: 240px;
+  }
+
+  .arrow {
+    font-size: 28px;
+  }
+}
+
+/* 🖥️ Escritorios grandes (≥ 1025px) */
+@media (min-width: 1025px) {
+  .cartelera h2 {
+    font-size: 26px;
+  }
+
+  .movie-card {
+    width: 180px;
+  }
+
+  .poster img {
+    height: 270px;
+  }
+
+  .arrow {
+    font-size: 32px;
+  }
+}
+
+
 </style>

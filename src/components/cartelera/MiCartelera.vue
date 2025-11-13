@@ -400,4 +400,147 @@ function seleccionarHorario(pelicula, hora) {
     height: 300px;
   }
 }
+/* ======= TABLETAS (Pantallas medianas: 768px o menos) ======= */
+@media (max-width: 768px) {
+  .menu-dias {
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 10px 0;
+  }
+
+  .menu-dia .nombre {
+    font-size: 14px;
+  }
+
+  .menu-dia .fecha {
+    font-size: 11px;
+  }
+
+  .contenido-principal {
+    flex-direction: column;
+    padding: 20px;
+    gap: 25px;
+  }
+
+  .buenavista {
+    width: 100%;
+    text-align: center;
+  }
+
+  .imagen-buenavista {
+    height: 180px;
+  }
+
+  .info-buenavista {
+    font-size: 13px;
+  }
+
+  .cartelera {
+    gap: 40px;
+  }
+
+  .pelicula {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .poster {
+    width: 70%;
+    height: 300px;
+  }
+
+  .info-pelicula h2 {
+    font-size: 20px;
+  }
+
+  .horario span {
+    padding: 5px 10px;
+    font-size: 13px;
+  }
+}
+
+/* ======= TELÉFONOS (Pantallas pequeñas: 480px o menos) ======= */
+@media (max-width: 480px) {
+  .menu-dias {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .menu-dia {
+    flex: 1 1 45%;
+  }
+
+  .menu-dia .nombre {
+    font-size: 13px;
+  }
+
+  .menu-dia .fecha {
+    font-size: 10px;
+  }
+
+  .contenido-principal {
+    padding: 15px;
+  }
+
+  .buenavista {
+    border: none;
+    box-shadow: none;
+  }
+
+  .imagen-buenavista {
+    height: 160px;
+  }
+
+  .info-buenavista {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .cartelera {
+    gap: 30px;
+  }
+
+  .pelicula {
+    gap: 15px;
+    padding-bottom: 15px;
+  }
+
+  .poster {
+    width: 100%;
+    height: 250px;
+  }
+
+  .info-pelicula h2 {
+    font-size: 18px;
+  }
+
+  .etiqueta {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+
+  .subtitulo {
+    font-size: 13px;
+  }
+
+  .texto {
+    font-size: 12px;
+  }
+
+  .horario {
+    gap: 4px;
+  }
+
+  .horario span {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+
+  .sin-estrenos {
+    font-size: 14px;
+    margin-top: 30px;
+  }
+}
+
 </style>

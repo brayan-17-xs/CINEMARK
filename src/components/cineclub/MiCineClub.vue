@@ -245,10 +245,122 @@ export default {
 }
 
 /* ======= RESPONSIVO ======= */
-@media (max-width: 900px) {
+/* ======= TABLETAS (Pantallas medianas: 768px o menos) ======= */
+@media (max-width: 768px) {
+  .container-membresias {
+    padding: 30px 25px;
+  }
+
+  .header-membresias h1 {
+    font-size: 24px;
+  }
+
+  .header-membresias .subtitulo {
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
   .membresias {
-    flex-direction: column;
-    align-items: center;
+    gap: 25px;
+  }
+
+  .tarjeta {
+    width: 90%;
+    max-width: 320px;
+  }
+
+  .encabezado {
+    padding: 25px 15px !important;
+  }
+
+  .encabezado h2 {
+    font-size: 20px;
+  }
+
+  .precio {
+    font-size: 20px !important;
+  }
+
+  .beneficios {
+    padding: 20px;
+  }
+
+  .beneficios li {
+    font-size: 13px;
+  }
+
+  .boton {
+    padding: 15px;
+  }
+
+  .btn-gold,
+  .btn-pro {
+    font-size: 14px;
+    padding: 9px 20px;
   }
 }
+
+/* ======= TELÉFONOS (Pantallas pequeñas: 480px o menos) ======= */
+@media (max-width: 480px) {
+  .container-membresias {
+    padding: 25px 15px;
+  }
+
+  .header-membresias h1 {
+    font-size: 20px;
+  }
+
+  .header-membresias .subtitulo {
+    font-size: 13px;
+  }
+
+  .membresias {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .tarjeta {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+
+  .encabezado {
+    padding: 20px 10px !important;
+  }
+
+  .encabezado h2 {
+    font-size: 18px;
+  }
+
+  .encabezado p {
+    font-size: 13px;
+  }
+
+  .precio {
+    font-size: 18px !important;
+  }
+
+  .beneficios {
+    padding: 15px;
+  }
+
+  .beneficios li {
+    font-size: 12.5px;
+    margin-bottom: 8px;
+  }
+
+  .boton {
+    padding: 10px;
+  }
+
+  .btn-gold,
+  .btn-pro {
+    width: 100%;
+    font-size: 13.5px;
+    padding: 10px 0;
+    border-radius: 5px;
+  }
+}
+
 </style>

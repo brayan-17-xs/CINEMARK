@@ -183,24 +183,160 @@ export default {
   font-size: 22px;
 }
 
-/* Responsive */
+/* =========================
+   🎬 MEDIA QUERIES RESPONSIVE
+   ========================= */
+
+/* TABLETS (pantallas entre 769px y 1023px) */
+@media (max-width: 1023px) {
+  .contenido {
+    gap: 30px;
+    padding: 30px 20px;
+  }
+
+  .imagen-promocion img {
+    width: 240px;
+  }
+
+  .detalle h2 {
+    font-size: 22px;
+  }
+
+  .precio {
+    font-size: 17px;
+  }
+
+  .descripcion {
+    font-size: 15px;
+  }
+
+  .btn-pago {
+    font-size: 15px;
+    padding: 10px 20px;
+  }
+
+  .terminos h3 {
+    font-size: 15px;
+  }
+
+  .terminos p {
+    font-size: 13.5px;
+  }
+
+  .carrito {
+    font-size: 17px;
+  }
+}
+
+/* MÓVILES GRANDES (481px - 768px) */
 @media (max-width: 768px) {
   .contenido {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    padding: 30px 15px;
   }
 
   .imagen-promocion img {
-    width: 220px;
+    width: 200px;
+    margin-bottom: 20px;
   }
 
   .detalle h2 {
     font-size: 20px;
   }
 
+  .precio {
+    font-size: 16px;
+  }
+
+  .descripcion {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
   .btn-pago {
     width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .terminos {
+    padding: 25px 15px;
+  }
+
+  .terminos h3 {
+    font-size: 14px;
+  }
+
+  .terminos p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .carrito {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .carrito span {
+    font-size: 20px;
   }
 }
+
+/* MÓVILES PEQUEÑOS (menos de 480px) */
+@media (max-width: 480px) {
+  .banner img {
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .contenido {
+    padding: 20px 10px;
+  }
+
+  .imagen-promocion img {
+    width: 180px;
+  }
+
+  .detalle h2 {
+    font-size: 18px;
+  }
+
+  .precio {
+    font-size: 15px;
+  }
+
+  .descripcion {
+    font-size: 13px;
+    margin-bottom: 15px;
+  }
+
+  .btn-pago {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .terminos {
+    padding: 20px 10px;
+  }
+
+  .terminos h3 {
+    font-size: 13.5px;
+  }
+
+  .terminos p {
+    font-size: 12.5px;
+  }
+
+  .carrito {
+    font-size: 15px;
+    gap: 8px;
+  }
+
+  .carrito span {
+    font-size: 18px;
+  }
+}
+
 </style>

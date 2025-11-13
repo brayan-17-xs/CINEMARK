@@ -135,13 +135,83 @@ hr {
   background: #a10000;
 }
 
-/* Responsive */
+/* Responsive: Tablets */
+@media (max-width: 1024px) {
+  .contacto {
+    padding: 50px 40px;
+  }
+
+  .header h1 {
+    font-size: 22px;
+  }
+
+  .contenido {
+    font-size: 14px;
+    max-width: 700px;
+  }
+
+  .btn-red {
+    padding: 10px 25px;
+    font-size: 14px;
+  }
+}
+
+/* Responsive: Teléfonos (pantallas pequeñas) */
 @media (max-width: 768px) {
   .contacto {
     padding: 40px 20px;
   }
+
   .header h1 {
-    font-size: 20px;
+    font-size: 18px;
+    line-height: 1.3;
+  }
+
+  .header h3 {
+    font-size: 15px;
+  }
+
+  .contenido {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .btn-red {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 13px;
+    border-radius: 15px;
   }
 }
+
+/* Responsive: Teléfonos muy pequeños */
+@media (max-width: 480px) {
+  .header i {
+    font-size: 22px;
+  }
+
+  .header h1 {
+    font-size: 16px;
+  }
+
+  .header hr,
+  hr {
+    width: 90%;
+  }
+
+  .contenido {
+    font-size: 12px;
+  }
+
+  .link {
+    display: block;
+    margin-top: 5px;
+  }
+
+  .btn-red {
+    font-size: 12px;
+    padding: 10px 0;
+  }
+}
+
 </style>

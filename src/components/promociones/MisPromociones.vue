@@ -81,13 +81,102 @@ const promociones = [
   }
 }
 
-@media (max-width: 600px) {
+/* === 📱 MEDIA QUERIES MEJORADAS === */
+
+/* 🧩 Pantallas muy pequeñas (hasta 480px) */
+@media (max-width: 480px) {
   .container-promos {
-    padding: 20px;
+    padding: 15px;
+  }
+
+  .header-promos h1 {
+    font-size: 18px;
+    line-height: 1.3;
+    margin-bottom: 25px;
+  }
+
+  .lista-promos {
+    grid-template-columns: 1fr; /* Una por fila */
+    gap: 20px;
+  }
+
+  .imagen-promo {
+    width: 100%;
+    border-radius: 8px;
+  }
+}
+
+/* 📲 Tablets verticales (481px a 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .container-promos {
+    padding: 25px;
   }
 
   .header-promos h1 {
     font-size: 22px;
   }
+
+  .lista-promos {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .imagen-promo {
+    width: 95%;
+    max-width: 600px;
+  }
 }
+
+/* 💻 Tablets horizontales o pantallas medianas (769px a 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container-promos {
+    padding: 30px;
+  }
+
+  .header-promos h1 {
+    font-size: 24px;
+  }
+
+  .lista-promos {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .imagen-promo {
+    width: 85%;
+  }
+}
+
+/* 🖥️ Pantallas grandes (más de 1024px) */
+@media (min-width: 1025px) {
+  .container-promos {
+    padding: 40px 60px;
+  }
+
+  .header-promos h1 {
+    font-size: 28px;
+  }
+
+  .lista-promos {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+
+  .imagen-promo {
+    width: 90%;
+    max-width: 700px;
+  }
+}
+
+/* 🧠 Pantallas ultra anchas (más de 1600px) */
+@media (min-width: 1600px) {
+  .container-promos {
+    padding: 60px 120px;
+  }
+
+  .imagen-promo {
+    max-width: 800px;
+  }
+}
+
 </style>

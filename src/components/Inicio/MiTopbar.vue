@@ -22,10 +22,10 @@
       <!-- Si YA inició sesión -->
       <template v-else>
         <div class="usuario">
-          <span class="crown" :class="membresiaColor">
-            <i class="fa-solid fa-crown"></i>
-          </span>
           <span class="email">{{ userEmail }}</span>
+          <span v-if="membresia" :class="['membresia-label', membresia.toLowerCase()]">
+            {{ membresia }}
+          </span>
         </div>
         <button class="btn-black" @click="logout">CERRAR SESIÓN</button>
       </template>
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import LoginModal from '@/components/login/LoginModal.vue'
 
 export default {
@@ -50,12 +50,11 @@ export default {
   setup() {
     const showModal = ref(false)
     const userEmail = ref('')
-    const membresia = ref('') // Gold, Pro o vacío
+    const membresia = ref('')
 
     function handleLoginSuccess(email) {
       userEmail.value = email
-      const userData = { email }
-      localStorage.setItem('user', JSON.stringify(userData))
+      localStorage.setItem('user', JSON.stringify({ email }))
     }
 
     function logout() {
@@ -66,56 +65,39 @@ export default {
     }
 
     onMounted(() => {
-      //  Cargar usuario guardado
       const storedUser = localStorage.getItem('user')
       if (storedUser) {
         const { email } = JSON.parse(storedUser)
         userEmail.value = email
       }
 
-      //  Cargar membresía si ya existe
       const storedMembresia = localStorage.getItem('membresia')
       if (storedMembresia) {
         membresia.value = storedMembresia
       }
 
-      //  Escuchar evento global cuando se compra una membresía
-      window.addEventListener('membresia-cambiada', (e) => {
-  membresia.value = e.detail.tipo
-  localStorage.setItem('membresia', e.detail.tipo) //  guarda el cambio
-})
-
-    })
-
-    //  Limpiar el listener al desmontar el componente
-    onUnmounted(() => {
-      window.removeEventListener('membresia-cambiada', () => {})
-    })
-
-    //  Color de la corona según membresía
-    const membresiaColor = computed(() => {
-      switch (membresia.value) {
-        case 'Gold':
-          return 'gold'
-        case 'Pro':
-          return 'pro'
-        default:
-          return 'none'
+      // Escucha cambios de membresía globalmente
+      const handler = (e) => {
+        membresia.value = e.detail.tipo
+        localStorage.setItem('membresia', e.detail.tipo)
       }
+      window.addEventListener('membresia-cambiada', handler)
+
+      onUnmounted(() => {
+        window.removeEventListener('membresia-cambiada', handler)
+      })
     })
 
     return {
       showModal,
       userEmail,
       membresia,
-      membresiaColor,
       handleLoginSuccess,
       logout
     }
   }
 }
 </script>
-
 
 <style scoped>
 .topbar {
@@ -178,20 +160,21 @@ export default {
   gap: 6px;
 }
 
-.crown i {
-  font-size: 16px;
+/* --- Etiquetas de membresía --- */
+.membresia-label {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  border-radius: 8px;
+  padding: 3px 6px;
 }
 
-.crown.gold i {
-  color: #d4af37; /* Dorado */
+.membresia-label.gold {
+  color: #d4af37; /* dorado */
 }
 
-.crown.pro i {
-  color: #b00000; /* Rojo */
-}
-
-.crown.none i {
-  color: #444; /* Negro por defecto */
+.membresia-label.pro {
+  color: #b00000; /* rojo */
 }
 
 .topbar-right a,
@@ -217,4 +200,107 @@ export default {
   background: #d40000;
   color: #fff;
 }
+/* ======================= */
+/* 🔹 RESPONSIVE TOPBAR 🔹 */
+/* ======================= */
+
+/* Pantallas medianas (tablets y laptops pequeñas) */
+@media (max-width: 992px) {
+  .topbar {
+    padding: 6px 20px;
+    font-size: 11px;
+  }
+
+  .topbar-center a {
+    margin: 0 6px;
+  }
+
+  .topbar-right a,
+  .topbar-right button {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .topbar-left a {
+    font-size: 14px;
+    margin-right: 8px;
+  }
+}
+
+/* Pantallas pequeñas (tablets verticales y móviles grandes) */
+@media (max-width: 768px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 20px;
+    text-align: left;
+  }
+
+  .topbar-left {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 6px;
+  }
+
+  .topbar-center {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 6px;
+  }
+
+  .topbar-right {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .topbar-right a,
+  .topbar-right button {
+    font-size: 12px;
+    padding: 5px 12px;
+  }
+
+  .usuario {
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+}
+
+/* Móviles pequeños (menor a 480px) */
+@media (max-width: 480px) {
+  .topbar {
+    font-size: 10px;
+    padding: 8px 10px;
+  }
+
+  .topbar-left a {
+    margin-right: 6px;
+    font-size: 13px;
+  }
+
+  .topbar-center {
+    display: none; /* 🔸 Oculta "Conócenos" y "Formatos" para ganar espacio */
+  }
+
+  .topbar-right {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .btn-black,
+  .btn-red {
+    width: 100%;
+    padding: 6px 0;
+    border-radius: 10px;
+    font-size: 12px;
+  }
+
+  .usuario {
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+}
+
 </style>

@@ -166,14 +166,111 @@ export default {
   background: #8a0000;
 }
 
-/* ===== RESPONSIVO ===== */
+/* ===== RESPONSIVO MEJORADO ===== */
+
+/* ===== TABLETAS (Pantallas medianas ≤768px) ===== */
 @media (max-width: 768px) {
+  .fondo-superior {
+    height: 180px;
+  }
+
+  .fondo-inferior {
+    height: 160px;
+    margin-top: -30px;
+  }
+
   .contenido {
-    padding: 40px 20px;
+    width: 95%;
+    padding: 35px 25px;
+    margin-top: -80px;
+  }
+
+  .contenido h2 {
+    font-size: 22px;
+  }
+
+  .descripcion {
+    font-size: 14px;
+    margin-bottom: 25px;
   }
 
   .lista-beneficios {
-    text-align: left;
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  .lista-beneficios li {
+    font-size: 14px;
+    margin: 8px 0;
+  }
+
+  .botones {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn-gold,
+  .btn-pro {
+    width: 100%;
+    font-size: 14px;
+    padding: 12px;
   }
 }
+
+/* ===== TELÉFONOS (Pantallas pequeñas ≤480px) ===== */
+@media (max-width: 480px) {
+  .fondo-superior {
+    height: 150px;
+  }
+
+  .fondo-inferior {
+    height: 130px;
+    margin-top: -25px;
+  }
+
+  .contenido {
+    width: 90%;
+    padding: 30px 18px;
+    margin-top: -70px;
+    border-radius: 15px;
+  }
+
+  .contenido h2 {
+    font-size: 20px;
+  }
+
+  .descripcion {
+    font-size: 13.5px;
+    margin-bottom: 20px;
+  }
+
+  .lista-beneficios {
+    padding: 0;
+    margin-bottom: 30px;
+  }
+
+  .lista-beneficios li {
+    font-size: 13px;
+    line-height: 1.4;
+    padding-left: 22px;
+  }
+
+  .lista-beneficios li::before {
+    font-size: 13px;
+  }
+
+  .botones {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-gold,
+  .btn-pro {
+    width: 100%;
+    font-size: 13.5px;
+    padding: 10px 0;
+    border-radius: 20px;
+  }
+}
+
 </style>

@@ -115,4 +115,72 @@ export default {
 .arrow:hover {
   background: rgba(0, 0, 0, 0.6);
 }
+/* 📱 Dispositivos pequeños (celulares en vertical) */
+@media (max-width: 480px) {
+  .hero {
+    height: 180px; /* más compacto */
+  }
+
+  .arrow {
+    font-size: 18px;
+    padding: 8px;
+  }
+
+  .arrow.left {
+    left: 8px;
+  }
+
+  .arrow.right {
+    right: 8px;
+  }
+
+  .hero-slide img {
+    object-position: center; /* centra bien la imagen */
+  }
+}
+
+/* 📲 Celulares grandes / tablets pequeñas */
+@media (min-width: 481px) and (max-width: 768px) {
+  .hero {
+    height: 220px;
+  }
+
+  .arrow {
+    font-size: 22px;
+    padding: 10px;
+  }
+
+  .arrow.left {
+    left: 10px;
+  }
+
+  .arrow.right {
+    right: 10px;
+  }
+}
+
+/* 💻 Tablets grandes / pantallas medianas */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero {
+    height: 260px;
+  }
+
+  .arrow {
+    font-size: 24px;
+    padding: 12px;
+  }
+}
+
+/* 🖥️ Escritorios grandes / pantallas HD */
+@media (min-width: 1025px) {
+  .hero {
+    height: 350px;
+  }
+
+  .arrow {
+    font-size: 30px;
+    padding: 14px;
+  }
+}
+
 </style>

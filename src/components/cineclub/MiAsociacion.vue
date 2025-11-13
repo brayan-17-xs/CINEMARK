@@ -134,16 +134,97 @@ export default {
 }
 
 /* RESPONSIVO */
-@media (max-width: 900px) {
+/* ======= TABLETAS (Pantallas medianas: 768px o menos) ======= */
+@media (max-width: 768px) {
+  .container-asociate {
+    padding: 40px 25px;
+  }
+
+  .header-asociate h1 {
+    font-size: 24px;
+  }
+
+  .subtitulo {
+    font-size: 15px;
+  }
+
   .pasos {
-    flex-direction: column;
-    align-items: center;
+    gap: 25px;
+    margin-top: 40px;
+  }
+
+  .paso {
+    max-width: 260px;
+    gap: 10px;
+  }
+
+  .circulo {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+  }
+
+  .paso h3 {
+    font-size: 17px;
+  }
+
+  .paso p {
+    font-size: 13px;
   }
 
   .linea {
     width: 2px;
     height: 40px;
-    margin: 20px 0;
+    margin: 15px 0;
   }
 }
+
+/* ======= TELÉFONOS (Pantallas pequeñas: 480px o menos) ======= */
+@media (max-width: 480px) {
+  .container-asociate {
+    padding: 30px 15px;
+  }
+
+  .header-asociate h1 {
+    font-size: 20px;
+  }
+
+  .subtitulo {
+    font-size: 14px;
+  }
+
+  .pasos {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .paso {
+    max-width: 100%;
+    padding: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    background: white;
+  }
+
+  .circulo {
+    width: 45px;
+    height: 45px;
+    font-size: 16px;
+  }
+
+  .paso h3 {
+    font-size: 16px;
+  }
+
+  .paso p {
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+
+  .linea {
+    display: none; /* Eliminamos la línea en móviles para simplificar */
+  }
+}
+
 </style>

@@ -77,81 +77,69 @@ export default {
 .close-btn:hover {
   background: darkred;
 }
-</style>
-<!-- <template>
-  <div v-if="showModal" class="modal">
-    <div class="modal-content">
-      <button class="close-btn" @click="closeModal">✖</button>
-      <img src="@/assets/oferton.jpeg" alt="Promoción" class="modal-img" />
-    </div>
-  </div>
-</template>
+/* 📱 Celulares pequeños (≤ 480px) */
+@media (max-width: 480px) {
+  .modal-content {
+    max-width: 90%;
+    max-height: 80vh;
+    padding: 6px;
+    border-radius: 8px;
+  }
 
-<script>
-export default {
-  name: "WelcomeModal",
-  data() {
-    return {
-      showModal: false,
-    };
-  },
-  mounted() {
-    // Verificamos si ya fue mostrado antes
-    const seenModal = localStorage.getItem("seenModal");
-    if (!seenModal) {
-      this.showModal = true;
+  .modal-img {
+    border-radius: 6px;
+  }
+
+  .close-btn {
+    top: 6px;
+    right: 6px;
+    font-size: 14px;
+    padding: 3px 7px;
+  }
+}
+
+/* 📲 Celulares grandes y tablets pequeñas (481px – 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .modal-content {
+      max-width: 400px;
+      max-height: 85vh;
+      padding: 8px;
     }
-  },
-  methods: {
-    closeModal() {
-      this.showModal = false;
-      localStorage.setItem("seenModal", "true"); // Guardamos que ya lo vio
-    },
-  },
-};
-</script>
 
-<style scoped>
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+    .modal-img {
+      width: 100%;
+      object-fit: contain;
+    }
+
+    .close-btn {
+      font-size: 15px;
+      padding: 4px 8px;
+    }
 }
 
-.modal-content {
-  position: relative;
-  background: #fff;
-  padding: 10px;
-  border-radius: 8px;
-  max-width: 350px;
-  width: 90%;
+/* 💻 Tablets y pantallas medianas (769px – 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .modal-content {
+    max-width: 450px;
+    max-height: 85vh;
+  }
+
+  .close-btn {
+    font-size: 16px;
+  }
 }
 
-.modal-img {
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-  display: block;
+/* 🖥️ Escritorios grandes (≥ 1025px) */
+@media (min-width: 1025px) {
+  .modal-content {
+    max-width: 500px;
+    max-height: 90vh;
+  }
+
+  .close-btn {
+    font-size: 17px;
+    padding: 5px 9px;
+  }
 }
 
-.close-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: #d40000;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
-  font-size: 14px;
-  cursor: pointer;
-}
-</style> -->
+</style>

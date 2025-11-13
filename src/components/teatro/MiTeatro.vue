@@ -222,4 +222,190 @@ export default {
   background: #8a0000;
 }
 
+/* === 📱 MEDIA QUERIES RESPONSIVE === */
+
+/* 🧩 Pantallas pequeñas (hasta 480px) */
+@media (max-width: 480px) {
+  .teatros {
+    padding: 20px 10px;
+  }
+
+  .titulo-contenedor h2 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .contenedor-principal {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .filtros {
+    width: 100%;
+    padding: 15px;
+    box-shadow: none;
+  }
+
+  .filtros h3 {
+    font-size: 15px;
+    justify-content: center;
+  }
+
+  .filtros img {
+    width: 140px;
+  }
+
+  .teatros-lista {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .teatro-card {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .teatro-card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .teatro-info {
+    padding: 15px;
+    text-align: center;
+  }
+
+  .teatro-info h3 {
+    font-size: 18px;
+  }
+
+  .teatro-info p {
+    font-size: 13px;
+  }
+
+  .btn-info {
+    align-self: center;
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+}
+
+/* 📲 Tablets verticales (481px a 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .teatros {
+    padding: 30px 15px;
+  }
+
+  .titulo-contenedor h2 {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .contenedor-principal {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .filtros {
+    width: 100%;
+    text-align: center;
+  }
+
+  .filtros img {
+    width: 160px;
+  }
+
+  .teatros-lista {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .teatro-card {
+    flex-direction: column;
+    max-width: 90%;
+  }
+
+  .teatro-card img {
+    width: 100%;
+  }
+
+  .teatro-info {
+    text-align: center;
+  }
+}
+
+/* 💻 Tablets horizontales o pantallas medianas (769px a 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .contenedor-principal {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .filtros {
+    flex: 1.2;
+    padding: 15px;
+  }
+
+  .filtros img {
+    width: 170px;
+  }
+
+  .teatros-lista {
+    flex: 2.8;
+    gap: 20px;
+  }
+
+  .teatro-card {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .teatro-card img {
+    width: 220px;
+  }
+
+  .teatro-info h3 {
+    font-size: 20px;
+  }
+}
+
+/* 🖥️ Pantallas grandes (más de 1024px) */
+@media (min-width: 1025px) {
+  .teatros {
+    padding: 40px 0;
+  }
+
+  .titulo-contenedor h2 {
+    font-size: 26px;
+  }
+
+  .contenedor-principal {
+    flex-direction: row;
+    gap: 30px;
+  }
+
+  .teatro-card img {
+    width: 240px;
+  }
+}
+
+/* 🧠 Pantallas ultra anchas (más de 1600px) */
+@media (min-width: 1600px) {
+  .contenedor-principal {
+    max-width: 1400px;
+  }
+
+  .filtros img {
+    width: 200px;
+  }
+
+  .teatro-card img {
+    width: 280px;
+  }
+
+  .teatro-info h3 {
+    font-size: 24px;
+  }
+}
+
 </style>

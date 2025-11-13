@@ -273,4 +273,133 @@ export default {
 .btn-continuar:hover {
   background: #8a0000;
 }
+/* 💻 Pantallas grandes hasta 1200px */
+@media (max-width: 1200px) {
+  .titulo {
+    font-size: 30px;
+  }
+  .titulo-tipo {
+    font-size: 22px;
+  }
+  .producto-imagen {
+    height: 170px;
+  }
+}
+
+/* 📲 Tablets horizontales hasta 992px */
+@media (max-width: 992px) {
+  .confiteria {
+    padding: 50px 15px 100px;
+  }
+  .productos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  .producto-imagen {
+    height: 160px;
+  }
+  .producto-nombre {
+    font-size: 15px;
+  }
+  .producto-precio {
+    font-size: 16px;
+  }
+  .titulo {
+    font-size: 28px;
+  }
+}
+
+/* 📱 Tablets verticales hasta 768px */
+@media (max-width: 768px) {
+  .titulo {
+    font-size: 26px;
+  }
+  .subtitulo {
+    font-size: 15px;
+    margin-bottom: 30px;
+  }
+  .productos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 18px;
+  }
+  .producto-imagen {
+    height: 150px;
+  }
+  .carrito-fijo {
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+  }
+  .carrito-info {
+    font-size: 14px;
+  }
+  .btn-continuar {
+    width: 100%;
+  }
+}
+
+/* 📞 Teléfonos medianos hasta 576px */
+@media (max-width: 576px) {
+  .confiteria {
+    padding: 40px 10px 90px;
+  }
+  .titulo {
+    font-size: 24px;
+  }
+  .titulo-tipo {
+    font-size: 20px;
+  }
+  .productos-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .producto-imagen {
+    height: 140px;
+  }
+  .producto-info {
+    padding: 12px;
+  }
+  .producto-descripcion {
+    font-size: 12px;
+    height: auto;
+  }
+  .contador {
+    padding: 2px 6px;
+  }
+  .btn-cantidad {
+    width: 22px;
+    height: 22px;
+  }
+  .carrito-fijo {
+    padding: 10px 15px;
+  }
+  .btn-continuar {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+}
+
+/* 📱 Teléfonos pequeños hasta 400px */
+@media (max-width: 400px) {
+  .productos-grid {
+    grid-template-columns: 1fr;
+  }
+  .producto-imagen {
+    height: 160px;
+  }
+  .titulo {
+    font-size: 22px;
+  }
+  .titulo-tipo {
+    font-size: 18px;
+  }
+  .carrito-fijo {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px;
+  }
+  .btn-continuar {
+    width: 100%;
+  }
+}
 </style>

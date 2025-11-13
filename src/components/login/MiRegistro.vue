@@ -217,13 +217,111 @@ input, select {
   background-color: #b11f22;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* === 📱 MEDIA QUERIES === */
+
+/* 🧩 Pantallas pequeñas (hasta 480px) */
+@media (max-width: 480px) {
+  .hero {
+    height: 160px;
+  }
+
+  .form-section {
+    padding: 20px;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .register-form h3 {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  label {
+    font-size: 13px;
+  }
+
+  input,
+  select {
+    font-size: 13px;
+    padding: 7px 8px;
+  }
+
   .grid {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
-  .hero {
-    height: 200px;
+
+  .checkboxes {
+    font-size: 13px;
+  }
+
+  .register-btn {
+    font-size: 14px;
+    padding: 10px;
   }
 }
+
+/* 📲 Tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .hero {
+    height: 220px;
+  }
+
+  .form-section {
+    padding: 30px;
+    margin: 0 10px;
+  }
+
+  .register-form h3 {
+    font-size: 17px;
+  }
+
+  input,
+  select {
+    font-size: 14px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+}
+
+/* 💻 Pantallas medianas (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero {
+    height: 260px;
+  }
+
+  .form-section {
+    max-width: 90%;
+    padding: 35px;
+  }
+
+  .register-form h3 {
+    font-size: 18px;
+  }
+
+  input,
+  select {
+    font-size: 15px;
+  }
+}
+
+/* 🖥️ Pantallas grandes (más de 1024px) */
+@media (min-width: 1025px) {
+  .hero {
+    height: 300px;
+  }
+
+  .form-section {
+    max-width: 1000px;
+    padding: 40px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 </style>

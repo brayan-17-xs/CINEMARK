@@ -323,4 +323,155 @@ input[disabled] {
   text-align: center;
   margin-top: 10px;
 }
+/* =============================== */
+/* 🔹 RESPONSIVE REGISTRO COMPRA 🔹 */
+/* =============================== */
+
+/* Tablets (pantallas medianas) */
+@media (max-width: 992px) {
+  .registro-compra {
+    max-width: 500px;
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  input {
+    font-size: 14px;
+    padding: 7px;
+  }
+
+  .btn-generar {
+    font-size: 14px;
+    padding: 9px;
+  }
+
+  table th,
+  table td {
+    font-size: 13px;
+    padding: 6px;
+  }
+}
+
+/* Móviles grandes (pantallas entre 768px y 600px) */
+@media (max-width: 768px) {
+  .registro-compra {
+    width: 90%;
+    margin: 25px auto;
+    padding: 18px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .formulario {
+    gap: 12px;
+  }
+
+  .campo {
+    flex-direction: column;
+  }
+
+  input {
+    font-size: 13px;
+    padding: 7px;
+  }
+
+  .btn-generar {
+    width: 100%;
+    font-size: 13px;
+    border-radius: 6px;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  .recibo {
+    padding: 15px;
+  }
+}
+
+/* Móviles pequeños (menor a 480px) */
+@media (max-width: 480px) {
+  .registro-compra {
+    width: 95%;
+    padding: 15px;
+    margin: 20px auto;
+  }
+
+  h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  label {
+    font-size: 13px;
+  }
+
+  input {
+    font-size: 13px;
+    padding: 6px;
+  }
+
+  .btn-generar {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  table th,
+  table td {
+    font-size: 11px;
+    padding: 5px;
+  }
+
+  .total {
+    text-align: center;
+    font-size: 13px;
+  }
+
+  .recibo {
+    padding: 12px;
+  }
+
+  .recibo p {
+    font-size: 13px;
+  }
+
+  .confirmacion {
+    font-size: 13px;
+  }
+}
+
+/* Extra pequeño (pantallas menores a 360px) */
+@media (max-width: 360px) {
+  h2 {
+    font-size: 17px;
+  }
+
+  input {
+    font-size: 12px;
+  }
+
+  .btn-generar {
+    font-size: 11px;
+    padding: 7px;
+  }
+
+  .recibo p {
+    font-size: 12px;
+  }
+
+  .recibo h3 {
+    font-size: 15px;
+  }
+}
+
 </style>

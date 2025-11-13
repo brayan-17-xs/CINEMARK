@@ -225,4 +225,180 @@ export default {
 .btn-red:hover {
   background: #a10000;
 }
+/* --- Tablets (hasta 1024px) --- */
+@media (max-width: 1024px) {
+  .quienes-somos {
+    padding: 50px 60px;
+  }
+
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .contenido {
+    font-size: 14px;
+  }
+
+  .contenido h3 {
+    font-size: 16px;
+  }
+
+  .imagen-principal {
+    margin: 30px 0;
+  }
+
+  .historia h1 {
+    font-size: 22px;
+  }
+
+  .anio {
+    font-size: 20px;
+    width: 80px;
+  }
+
+  .texto {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+/* --- Teléfonos medianos (hasta 768px) --- */
+@media (max-width: 768px) {
+  .quienes-somos {
+    padding: 40px 25px;
+  }
+
+  .header h1 {
+    font-size: 22px;
+  }
+
+  .header h3 {
+    font-size: 16px;
+  }
+
+  .header hr {
+    width: 70%;
+  }
+
+  .contenido {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .lista li {
+    padding-left: 18px;
+  }
+
+  .imagen-principal img {
+    max-width: 100%;
+    border-radius: 6px;
+  }
+
+  .historia {
+    margin-top: 40px;
+  }
+
+  .historia h1 {
+    font-size: 20px;
+  }
+
+  .timeline {
+    margin-top: 25px;
+  }
+
+  .item {
+    flex-direction: column;
+    align-items: flex-start;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  }
+
+  .anio {
+    text-align: left;
+    width: auto;
+    margin: 0 0 8px 0;
+    font-size: 18px;
+  }
+
+  .icono {
+    margin: 0 0 10px 0;
+  }
+
+  .texto {
+    text-align: left;
+    font-size: 13px;
+  }
+
+  .btn-red {
+    padding: 9px 22px;
+    font-size: 14px;
+  }
+}
+
+/* --- Teléfonos pequeños (hasta 480px) --- */
+@media (max-width: 480px) {
+  .quienes-somos {
+    padding: 30px 15px;
+  }
+
+  .header i {
+    font-size: 24px;
+  }
+
+  .header h1 {
+    font-size: 18px;
+  }
+
+  .header h3 {
+    font-size: 15px;
+  }
+
+  .header hr {
+    width: 90%;
+  }
+
+  .contenido {
+    font-size: 13px;
+  }
+
+  .contenido h3 {
+    font-size: 15px;
+  }
+
+  .lista li {
+    font-size: 13px;
+    padding-left: 15px;
+  }
+
+  .imagen-principal {
+    margin: 25px 0;
+  }
+
+  .historia h3 {
+    font-size: 15px;
+  }
+
+  .historia h1 {
+    font-size: 17px;
+  }
+
+  .anio {
+    font-size: 16px;
+  }
+
+  .texto {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  .btn-red {
+    padding: 8px 20px;
+    font-size: 13px;
+    border-radius: 18px;
+  }
+}
+
 </style>

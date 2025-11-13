@@ -139,4 +139,79 @@ export default {
   font-size: 13px;
   color: #555;
 }
+/* 📱 Smartphones (hasta 600px) */
+@media (max-width: 600px) {
+  .footer {
+    padding: 30px 15px 15px;
+    text-align: center;
+  }
+
+  .footer-contenedor {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .footer-col h4 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .footer-col ul li {
+    margin-bottom: 6px;
+  }
+
+  .footer-col ul li a {
+    font-size: 14px;
+  }
+
+  .apps-contenedor {
+    align-items: center;
+  }
+
+  .apps-contenedor img {
+    width: 130px;
+  }
+
+  .redes-contenedor {
+    justify-content: center;
+  }
+
+  .redes-contenedor a {
+    font-size: 20px;
+  }
+
+  .footer-bottom {
+    font-size: 12px;
+    margin-top: 25px;
+  }
+}
+
+/* 💻 Tablets (601px a 900px) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .footer {
+    padding: 35px 25px 20px;
+  }
+
+  .footer-contenedor {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+
+  .footer-col h4 {
+    font-size: 15px;
+  }
+
+  .apps-contenedor img {
+    width: 140px;
+  }
+
+  .redes-contenedor a {
+    font-size: 18px;
+  }
+
+  .footer-bottom {
+    font-size: 13px;
+  }
+}
+
 </style>

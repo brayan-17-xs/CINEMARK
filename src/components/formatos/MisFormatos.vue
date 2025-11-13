@@ -155,4 +155,75 @@ export default {
   color: #333;
   line-height: 1.4;
 }
+/* 📱 Smartphones (hasta 600px) */
+@media (max-width: 600px) {
+  .formatos {
+    padding-bottom: 20px;
+  }
+
+  .formato-item .overlay {
+    font-size: 22px;
+    padding: 10px 0;
+  }
+
+  .titulo {
+    font-size: 18px;
+    margin: 25px 0 10px;
+  }
+
+  .formatos-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 0 15px;
+  }
+
+  .formato-card img {
+    height: 180px;
+  }
+
+  .formato-info {
+    padding: 10px 12px;
+  }
+
+  .formato-info h3 {
+    font-size: 15px;
+  }
+
+  .formato-info p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+}
+
+/* 💻 Tablets (601px a 900px) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .formato-item .overlay {
+    font-size: 26px;
+    padding: 12px 0;
+  }
+
+  .titulo {
+    font-size: 20px;
+    margin: 30px 0 15px;
+  }
+
+  .formatos-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 0 30px;
+  }
+
+  .formato-card img {
+    height: 190px;
+  }
+
+  .formato-info h3 {
+    font-size: 16px;
+  }
+
+  .formato-info p {
+    font-size: 14px;
+  }
+}
+
 </style>

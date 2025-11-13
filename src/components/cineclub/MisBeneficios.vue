@@ -168,15 +168,97 @@ export default {
   background: #8a0000;
 }
 
-/* ===== RESPONSIVO ===== */
+/* ===== RESPONSIVO MEJORADO ===== */
+
+/* === TABLETAS (pantallas medianas ≤ 900px) === */
 @media (max-width: 900px) {
+  .container-beneficios {
+    padding: 50px 25px;
+    gap: 40px;
+  }
+
+  .header-beneficios h1 {
+    font-size: 25px;
+  }
+
+  .subtitulo {
+    font-size: 14px;
+  }
+
   .beneficio {
     flex-direction: column;
     text-align: center;
+    padding: 25px 20px;
   }
-  .izquierda, .derecha {
+
+  .beneficio.alterno {
+    flex-direction: column-reverse;
+  }
+
+  .icono {
+    height: 70px;
+    max-width: 160px;
+  }
+
+  .texto {
+    font-size: 14px;
+  }
+
+  .botones-final {
     flex-direction: column;
-    text-align: center;
+    gap: 15px;
+  }
+
+  .btn-gold,
+  .btn-pro {
+    width: 80%;
+    max-width: 320px;
+    font-size: 14px;
   }
 }
+
+/* === TELÉFONOS (pantallas pequeñas ≤ 480px) === */
+@media (max-width: 480px) {
+  .container-beneficios {
+    padding: 40px 15px;
+    gap: 30px;
+  }
+
+  .header-beneficios h1 {
+    font-size: 22px;
+  }
+
+  .subtitulo {
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .beneficio {
+    padding: 20px 15px;
+    gap: 15px;
+  }
+
+  .icono {
+    height: 60px;
+    max-width: 140px;
+  }
+
+  .texto {
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .btn-gold,
+  .btn-pro {
+    width: 100%;
+    font-size: 13.5px;
+    padding: 10px 0;
+    border-radius: 20px;
+  }
+
+  .botones-final {
+    gap: 10px;
+  }
+}
+
 </style>
