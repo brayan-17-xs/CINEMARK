@@ -42,9 +42,11 @@
         </div>
 
         <!-- Footer -->
-        <div class="movie-footer">
-          <p>VER HORARIOS</p>
-        </div>
+        <!-- Footer -->
+<div class="movie-footer" @click="$router.push(`/pelicula/${movie.id}`)" role="button" tabindex="0">
+  <p>VER HORARIOS</p>
+</div>
+
       </div>
     </div>
 

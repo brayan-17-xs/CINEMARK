@@ -31,9 +31,10 @@
             <p>{{ movie.clasificacion }}</p>
           </div>
         </div>
-        <div class="movie-footer" @click="$router.push(`/pelicula/${movie.id}`)">
-          <p>VER HORARIOS</p>
-        </div>
+        <div class="movie-footer">
+  <button @click="$router.push(`/pelicula/${movie.id}`)">VER HORARIOS</button>
+</div>
+
       </div>
     </div>
     <button class="arrow right" @click="nextMovie">&#10095;</button>
@@ -161,7 +162,20 @@ export default {
   font-size: 14px;
   cursor: pointer;
   transition: background 0.3s;
+  position: relative;
+  z-index: 5; /* 👈 eleva el footer para que reciba el click */
 }
+
+.movie-footer button {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+
 .movie-footer:hover {
   background: #a00000;
 }
